@@ -1,6 +1,19 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Navbar from "@/components/layout/navbar";
+import Image from "next/image";
+import localFont from 'next/font/local';
+import Searchbar from "@/components/ui/searchbar";
+
+// Definiere die Font-Konfiguration
+const erdtreeFont = localFont({
+  // Use a filesystem-relative path from this file to the font in /public
+  // layout.tsx is at src/app/layout.tsx -> public is two levels up
+  src: '../../public/fonts/Mantinia Regular.otf',
+  variable: '--font-erdtree', // Erstellt einen CSS-Variablennamen
+  display: 'swap',
+});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,10 +36,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${erdtreeFont.variable}`}>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased flex h-screen w-screen ${erdtreeFont.className}`}
       >
+        <Image src="/elden ring wallpaper.jpg" fill alt="Elden Ring Wallpaper" className="absolute -z-10 object-cover" />
+        <header className="w-full flex flex-col items-center pt-8">
+          <Image src="/erdtree-cards.png" width={500} height={83} alt="Erdtree Cards" className="w-full max-w-xl md:w-3/4 h-auto" 
+          sizes="(max-width: 768px) 100vw, 50vw" />
+          <div>
+            <Searchbar />
+          </div>
+        </header>
+        <Navbar />
         {children}
       </body>
     </html>
