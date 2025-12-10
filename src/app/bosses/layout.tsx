@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-import Navbar from "@/components/layout/navbar";
+import "@/app/globals.css";
+import Navbar from "@/components/ui/navbar";
 import Image from "next/image";
 import localFont from 'next/font/local';
 import Searchbar from "@/components/ui/searchbar";
@@ -10,7 +10,7 @@ import Searchbar from "@/components/ui/searchbar";
 const erdtreeFont = localFont({
   // Use a filesystem-relative path from this file to the font in /public
   // layout.tsx is at src/app/layout.tsx -> public is two levels up
-  src: '../../public/fonts/Mantinia Regular.otf',
+  src: '../../../public/fonts/Mantinia Regular.otf',
   variable: '--font-erdtree', // Erstellt einen CSS-Variablennamen
   display: 'swap',
 });
@@ -37,19 +37,21 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${erdtreeFont.variable}`}>
+      <head>
+        <link rel="stylesheet" href="/css/card.css" />
+      </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased flex h-screen w-screen ${erdtreeFont.className}`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased h-screen w-screen ${erdtreeFont.className}`}
       >
-        <Image src="/elden ring wallpaper.jpg" fill alt="Elden Ring Wallpaper" className="absolute -z-10 object-cover" />
-        <header className="w-full flex flex-col items-center pt-8">
-          <Image src="/erdtree-cards.png" width={500} height={83} alt="Erdtree Cards" className="w-full max-w-xl md:w-3/4 h-auto" 
-          sizes="(max-width: 768px) 100vw, 50vw" />
-          <div>
-            <Searchbar />
-          </div>
-        </header>
-        <Navbar />
+        <Image src="/elden ring wallpaper.jpg" width={1920} height={1080} alt="Elden Ring Wallpaper" className="fixed w-full h-full -z-10 object-cover" />
+        <Navbar highLightCategory="bosses"/>
+        <div className="flex flex-col flex-grow">
+          <header className="w-full flex flex-col items-center pt-8">
+            <Image src="/erdtree-cards.png" width={500} height={83} alt="Erdtree Cards" className="w-full max-w-xl md:w-3/4 h-auto" 
+            sizes="(max-width: 768px) 100vw, 50vw" />
+          </header>
         {children}
+        </div>
       </body>
     </html>
   );
