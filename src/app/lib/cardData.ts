@@ -1,7 +1,7 @@
 
 
 export default interface CardData {
-    // Basic information
+    // Grundlegende Informationen
     id: number;
     name: string;
     rarity: "Common" | "Rare" | "Epic" | "Legendary";
@@ -10,7 +10,7 @@ export default interface CardData {
     image_mime: string;
     image_data: Buffer;
 
-    // Attack stats
+    // Angriffswerte
     base_attack?: number;
     magic_attack?: number;
     fire_attack?: number;
@@ -18,14 +18,14 @@ export default interface CardData {
     holy_attack?: number;
     crit?: number;
 
-    // Defense stats
+    // Verteidigungswerte
     parry_defense?: number;
     magic_defense?: number;
     fire_defense?: number;
     light_defense?: number;
     holy_defense?: number;
 
-    // Negation stats
+    // Negationswerte
     physical_negation?: number;
     strike_negation?: number;
     slash_negation?: number;
@@ -35,21 +35,21 @@ export default interface CardData {
     light_negation?: number;
     holy_negation?: number;
 
-    // Requirements
+    // Anforderungen
     str_requirement?: number;
     dex_requirement?: number;
     int_requirement?: number;
     fai_requirement?: number;
     arc_requirement?: number;
 
-    // Scaling
+    // Skalierung
     str_scaling?: 'S' | 'A' | 'B' | 'C' | 'D' | 'E';
     dex_scaling?: 'S' | 'A' | 'B' | 'C' | 'D' | 'E';
     int_scaling?: 'S' | 'A' | 'B' | 'C' | 'D' | 'E';
     fai_scaling?: 'S' | 'A' | 'B' | 'C' | 'D' | 'E';
     arc_scaling?: 'S' | 'A' | 'B' | 'C' | 'D' | 'E';
 
-    // Other stats
+    // Sonstige Werte
     boost?: number;
     wgt?: number;
     special_attack_fp?: number;
@@ -61,7 +61,7 @@ export default interface CardData {
     special_attack?: string;
     rng?: number;
 
-    // Rewards
+    // Belohnungen
     reward_runes?: number;
     reward_one?: string;
     reward_two?: string;
@@ -69,6 +69,7 @@ export default interface CardData {
 
     location?: string;
 
+    // Bosse Stärken und Schwächen
     strong_vs_1?: string;
     strong_vs_2?: string;
     strong_vs_3?: string;

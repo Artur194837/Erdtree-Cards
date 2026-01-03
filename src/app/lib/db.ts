@@ -2,12 +2,10 @@
 import postgres, { RowList, Row } from 'postgres';
 import CardData from './cardData';
 import DBResponse from './response';
-import { FilterState } from './filterState';
 
-// WARNUNG: imageer in der Datenbank speichern ist ineffizient!
-// Der Typ muss von der Frontend-Logik zu Buffer konvertiert werden.
+// DB anlegen
 export async function createDB() {
-    const sql = postgres(process.env.POSTGRES_URL!, { ssl: 'require' });
+    const sql = postgres(process.env.POSTGRES_URL!);
 
     await sql`
       CREATE TABLE IF NOT EXISTS cards (
@@ -100,7 +98,7 @@ export async function createDB() {
   });
 };
 
-// Die Signatur MUSS angepasst werden, um die Daten vom Frontend zu empfangen
+// Karte hinzufügen
 export async function addCard(
   // Basic information
   name: string,
@@ -183,7 +181,7 @@ export async function addCard(
     return { error: 'Server configuration error: POSTGRES_URL not set' };
   }
 
-  const sql = postgres(process.env.POSTGRES_URL, { ssl: 'require' });
+  const sql = postgres(process.env.POSTGRES_URL);
 
     try {
       const res = await sql`
@@ -232,12 +230,13 @@ export async function addCard(
     }
 }
 
+//Alle Karten erhalten
 export async function getCards() : Promise<DBResponse> {
   if (!process.env.POSTGRES_URL) {
     console.error('POSTGRES_URL not set');
     return { cards: [], status: 'Server configuration error: POSTGRES_URL not set' };
   }
-  const sql = postgres(process.env.POSTGRES_URL, { ssl: 'require' });
+  const sql = postgres(process.env.POSTGRES_URL);
 
   try {
     const res = await sql`
@@ -253,12 +252,13 @@ export async function getCards() : Promise<DBResponse> {
   }
 }
 
+//Boss Karten erhalten
 export async function getBossCards() : Promise<DBResponse> {
   if (!process.env.POSTGRES_URL) {
     console.error('POSTGRES_URL not set');
     return { cards: [], status: 'Server configuration error: POSTGRES_URL not set' };
   }
-  const sql = postgres(process.env.POSTGRES_URL, { ssl: 'require' });
+  const sql = postgres(process.env.POSTGRES_URL);
 
   try {
     const res = await sql`
@@ -275,12 +275,13 @@ export async function getBossCards() : Promise<DBResponse> {
   }
 }
 
+//NPC Karten erhalten
 export async function getNPCCards() : Promise<DBResponse> {
   if (!process.env.POSTGRES_URL) {
     console.error('POSTGRES_URL not set');
     return { cards: [], status: 'Server configuration error: POSTGRES_URL not set' };
   }
-  const sql = postgres(process.env.POSTGRES_URL, { ssl: 'require' });
+  const sql = postgres(process.env.POSTGRES_URL);
 
   try {
     const res = await sql`
@@ -297,12 +298,13 @@ export async function getNPCCards() : Promise<DBResponse> {
   }
 }
 
+//Waffen Karten erhalten
 export async function getWeaponCards() : Promise<DBResponse> {
   if (!process.env.POSTGRES_URL) {
     console.error('POSTGRES_URL not set');
     return { cards: [], status: 'Server configuration error: POSTGRES_URL not set' };
   }
-  const sql = postgres(process.env.POSTGRES_URL, { ssl: 'require', prepare: false });
+  const sql = postgres(process.env.POSTGRES_URL, { prepare: false });
 
   try {
     const res = await sql`
@@ -319,103 +321,13 @@ export async function getWeaponCards() : Promise<DBResponse> {
   }
 }
 
-export async function getWeaponCardsByFilterState(filterState: FilterState) : Promise<DBResponse> {
-  if (!process.env.POSTGRES_URL) {
-    console.error('POSTGRES_URL not set'); 
-    return { cards: [], status: 'Server configuration error: POSTGRES_URL not set' };
-  }
-  const sql = postgres(process.env.POSTGRES_URL, { ssl: 'require', prepare: false });
-
-  let sqlString = ` 
-      SELECT *
-      FROM cards
-      WHERE class_of_object = 'Weapon'`
-
-  if (filterState.startIntervallBaseAttack !== null)
-  sqlString += ` AND base_attack BETWEEN ${filterState.startIntervallBaseAttack} AND ${filterState.endIntervallBaseAttack}`;
-
-  if (filterState.startIntervallMagicAttack !== null)
-    sqlString += ` AND magic_attack BETWEEN ${filterState.startIntervallMagicAttack} AND ${filterState.endIntervallMagicAttack}`;
-
-  if (filterState.startIntervallFireAttack !== null)
-    sqlString += ` AND fire_attack BETWEEN ${filterState.startIntervallFireAttack} AND ${filterState.endIntervallFireAttack}`;
-
-  if (filterState.startIntervallLigtAttack !== null)
-    sqlString += ` AND lightning_attack BETWEEN ${filterState.startIntervallLigtAttack} AND ${filterState.endIntervallLigtAttack}`;
-
-  if (filterState.startIntervallHolyAttack !== null)
-    sqlString += ` AND holy_attack BETWEEN ${filterState.startIntervallHolyAttack} AND ${filterState.endIntervallHolyAttack}`;
-
-  if (filterState.startIntervallParryDefense !== null)
-    sqlString += ` AND parry_defense BETWEEN ${filterState.startIntervallParryDefense} AND ${filterState.endIntervallParryDefense}`;
-
-  if (filterState.startIntervallMagicDefense !== null)
-    sqlString += ` AND magic_defense BETWEEN ${filterState.startIntervallMagicDefense} AND ${filterState.endIntervallMagicDefense}`;
-
-  if (filterState.startIntervallFireDefense !== null)
-    sqlString += ` AND fire_defense BETWEEN ${filterState.startIntervallFireDefense} AND ${filterState.endIntervallFireDefense}`;
-
-  if (filterState.startIntervallLigtDefense !== null)
-    sqlString += ` AND lightning_defense BETWEEN ${filterState.startIntervallLigtDefense} AND ${filterState.endIntervallLigtDefense}`;
-
-  if (filterState.startIntervallHolyDefense !== null)
-    sqlString += ` AND holy_defense BETWEEN ${filterState.startIntervallHolyDefense} AND ${filterState.endIntervallHolyDefense}`;
-
-  if (filterState.startIntervallStrScaling !== null)
-    sqlString += ` AND str_scaling BETWEEN '${filterState.startIntervallStrScaling}' AND '${filterState.endIntervallStrScaling}'`;
-
-  if (filterState.startIntervallDexScaling !== null)
-    sqlString += ` AND dex_scaling BETWEEN '${filterState.startIntervallDexScaling}' AND '${filterState.endIntervallDexScaling}'`;
-
-  if (filterState.startIntervallIntScaling !== null)
-    sqlString += ` AND int_scaling BETWEEN '${filterState.startIntervallIntScaling}' AND '${filterState.endIntervallIntScaling}'`;
-
-  if (filterState.startIntervallFaiScaling !== null)
-    sqlString += ` AND fai_scaling BETWEEN '${filterState.startIntervallFaiScaling}' AND '${filterState.endIntervallFaiScaling}'`;
-
-  if (filterState.startIntervallArcScaling !== null)
-    sqlString += ` AND arc_scaling BETWEEN '${filterState.startIntervallArcScaling}' AND '${filterState.endIntervallArcScaling}'`;
-
-  if (filterState.startIntervallStrRequirement !== null)
-    sqlString += ` AND str_requirement BETWEEN ${filterState.startIntervallStrRequirement} AND ${filterState.endIntervallStrRequirement}`;
-
-  if (filterState.startIntervallDexRequirement !== null)
-    sqlString += ` AND dex_requirement BETWEEN ${filterState.startIntervallDexRequirement} AND ${filterState.endIntervallDexRequirement}`;
-
-  if (filterState.startIntervallIntRequirement !== null)
-    sqlString += ` AND int_requirement BETWEEN ${filterState.startIntervallIntRequirement} AND ${filterState.endIntervallIntRequirement}`;
-
-  if (filterState.startIntervallFaiRequirement !== null)
-    sqlString += ` AND fai_requirement BETWEEN ${filterState.startIntervallFaiRequirement} AND ${filterState.endIntervallFaiRequirement}`;
-
-  if (filterState.startIntervallArcRequirement !== null)
-    sqlString += ` AND arc_requirement BETWEEN ${filterState.startIntervallArcRequirement} AND ${filterState.endIntervallArcRequirement}`;
-
-  if (filterState.startIntervallSpecialAttackFP !== null)
-    sqlString += ` AND special_attack_fp BETWEEN ${filterState.startIntervallSpecialAttackFP} AND ${filterState.endIntervallSpecialAttackFP}`;
-
-  if (filterState.startIntervallWgt !== null)
-    sqlString += ` AND weight BETWEEN ${filterState.startIntervallWgt} AND ${filterState.endIntervallWgt}`;
-
-  if(filterState.sortBy !== null)
-    sqlString += `\n ORDER BY ${filterState.sortBy} ${filterState.sortOrder}`;
-
-  try {
-    const res = await sql`${sqlString}` as CardData[];
-
-    return {status: "sucess", cards: res};
-  } catch (error) {
-    console.error('getCards error:', error);
-    return {status: "error", cards: []};
-  }
-}
-
+//Rüstungs Karten erhalten
 export async function getArmorCards() : Promise<DBResponse> {
   if (!process.env.POSTGRES_URL) {
     console.error('POSTGRES_URL not set');
     return { cards: [], status: 'Server configuration error: POSTGRES_URL not set' };
   }
-  const sql = postgres(process.env.POSTGRES_URL, { ssl: 'require' });
+  const sql = postgres(process.env.POSTGRES_URL);
 
   try {
     const res = await sql`
@@ -430,33 +342,5 @@ export async function getArmorCards() : Promise<DBResponse> {
     console.error('getCards error:', error);
     return {status: "error", cards: []};
   }
-}
-
-let currentIndex = 0;
-
-export async function getNextNCards(n : number) {
-  if (!process.env.POSTGRES_URL) {
-    console.error('POSTGRES_URL not set');
-    return { error: 'Server configuration error: POSTGRES_URL not set' };
-  }
-
-    const sql = postgres(process.env.POSTGRES_URL, { ssl: 'require' });
-
-    try {
-      const res = await sql`
-        SELECT *
-        FROM cards
-        ORDER BY id DESC
-        LIMIT ${n}
-        OFFSET ${currentIndex};
-      `;
-
-      currentIndex += n;
-
-      return { status: 'success', cards: res };
-    } catch (error) {
-      console.error('getCards error:', error);
-      return { error: String(error) };
-    }
 }
 

@@ -1,6 +1,6 @@
 import { createDB } from "@/app/lib/db";
 
-
+// REST API zur DB Erstellung
 export async function GET() {
     try {
         await createDB();

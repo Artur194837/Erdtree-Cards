@@ -668,7 +668,7 @@ export default function Filter({type,
                 <div className={`flex flex-col items-center w-full z-1 ${className}`}>
                     <div className="flex mb-2">
                         <button onClick={openOrCloseFilter} className="cursor-pointer flex items-center">
-                            <span className="font-sans text-base text-[#fcfdae]">Filter</span>
+                            <span className="font-sans text-lg text-[#fcfdae]">Filter</span>
                             {!visible ? 
                                 (<Image src="/arrow_up.png" width={12} height={12} className="w-[12px] h-[12px]" alt="Arrow Up" />)
                             :
@@ -677,57 +677,57 @@ export default function Filter({type,
                         </button>
                     </div>
                     {visible &&
-                        (<div className="w-[34vw] absolute left-[65vw] bg-[#0b2829] flex flex-col border-[#fcfdae] border-solid border-2 rounded-md z-1">
+                        (<div className="w-[70vw] max-3xl:w-[57vw] 3xl:absolute 3xl:w-[15vw] 3xl:right-2 mt-12 bg-[#0b2829] flex flex-col border-[#fcfdae] border-solid border-2 rounded-md z-1">
                             <div className="flex w-full mb-2 mt-2 ml-2">
-                                <label className="font-sans text-sm text-[#fcfdae] mr-2">Sort By</label>
+                                <label className="font-sans text-base sm:text-lg text-[#fcfdae] mr-2">Sort By</label>
                                 <select
                                     value={sortBy}
                                     onChange={handleSortByChange}
-                                    className={`border-[#fcfdae] border-solid border-2 rounded-md mr-2 bg-[#0b2829] font-sans text-sm ${getSortByColor(sortBy)}`}
+                                    className={`border-[#fcfdae] border-solid border-2 rounded-md mr-2 bg-[#0b2829] font-sans text-base sm:text-lg w-40 sm:w-45 2xl:w-40 ${getSortByColor(sortBy)}`}
                                 >
                                     {/* Attack */}
-                                    <option value="Base Attack" className="font-sans text-sm text-white">Base Attack</option>
-                                    <option value="Magic Attack" className="font-sans text-sm text-blue-200">Magic Attack</option>
-                                    <option value="Fire Attack" className="font-sans text-sm text-orange-300">Fire Attack</option>
-                                    <option value="Ligt Attack" className="font-sans text-sm text-yellow-300">Ligt Attack</option>
-                                    <option value="Holy Attack" className="font-sans text-sm text-[#ffd894]">Holy Attack</option>
+                                    <option value="Base Attack" className="font-sans text-xs sm:text-sm text-white">Base Attack</option>
+                                    <option value="Magic Attack" className="font-sans text-xs sm:text-sm text-blue-200">Magic Attack</option>
+                                    <option value="Fire Attack" className="font-sans text-xs sm:text-sm text-orange-300">Fire Attack</option>
+                                    <option value="Ligt Attack" className="font-sans text-xs sm:text-sm text-yellow-300">Ligt Attack</option>
+                                    <option value="Holy Attack" className="font-sans text-xs sm:text-sm text-[#ffd894]">Holy Attack</option>
 
                                     {/* Defense */}
-                                    <option value="Parry Defense" className="font-sans text-sm text-white">Parry Defense</option>
-                                    <option value="Magic Defense" className="font-sans text-sm text-blue-200">Magic Defense</option>
-                                    <option value="Fire Defense" className="font-sans text-sm text-orange-300">Fire Defense</option>
-                                    <option value="Ligt Defense" className="font-sans text-sm text-yellow-300">Ligt Defense</option>
-                                    <option value="Holy Defense" className="font-sans text-sm text-[#ffd894]">Holy Defense</option>
+                                    <option value="Parry Defense" className="font-sans text-xs sm:text-sm text-white">Parry Defense</option>
+                                    <option value="Magic Defense" className="font-sans text-xs sm:text-sm text-blue-200">Magic Defense</option>
+                                    <option value="Fire Defense" className="font-sans text-xs sm:text-sm text-orange-300">Fire Defense</option>
+                                    <option value="Ligt Defense" className="font-sans text-xs sm:text-sm text-yellow-300">Ligt Defense</option>
+                                    <option value="Holy Defense" className="font-sans text-xs sm:text-sm text-[#ffd894]">Holy Defense</option>
 
                                     {/* Misc */}
-                                    <option value="Crit" className="font-sans text-sm text-red-400">Crit</option>
-                                    <option value="Boost" className="font-sans text-sm text-blue-400">Boost</option>
-                                    <option value="Rng" className="font-sans text-sm text-green-300">Rng</option>
-                                    <option value="Wgt." className="font-sans text-sm text-orange-200">Wgt.</option>
+                                    <option value="Crit" className="font-sans text-xs sm:text-sm text-red-400">Crit</option>
+                                    <option value="Boost" className="font-sans text-xs sm:text-sm text-blue-400">Boost</option>
+                                    <option value="Rng" className="font-sans text-xs sm:text-sm text-green-300">Rng</option>
+                                    <option value="Wgt." className="font-sans text-xs sm:text-sm text-orange-200">Wgt.</option>
 
                                     {/* NEW: Generic */}
-                                    <option value="Name" className="font-sans text-sm text-white">Name</option>
+                                    <option value="Name" className="font-sans text-xs sm:text-sm text-white">Name</option>
 
                                     {/* NEW: Rarity */}
-                                    <option value="Rarity" className="font-sans text-sm text-purple-300">Rarity</option>
+                                    <option value="Rarity" className="font-sans text-xs sm:text-sm text-purple-300">Rarity</option>
 
                                     {/* NEW: Requirements */}
-                                    <option value="Str Requirement" className="font-sans text-sm text-red-300">Str Requirement</option>
-                                    <option value="Dex Requirement" className="font-sans text-sm text-green-300">Dex Requirement</option>
-                                    <option value="Int Requirement" className="font-sans text-sm text-blue-300">Int Requirement</option>
-                                    <option value="Fai Requirement" className="font-sans text-sm text-yellow-300">Fai Requirement</option>
-                                    <option value="Arc Requirement" className="font-sans text-sm text-pink-300">Arc Requirement</option>
+                                    <option value="Str Requirement" className="font-sans text-xs sm:text-sm text-red-300">Str Requirement</option>
+                                    <option value="Dex Requirement" className="font-sans text-xs sm:text-sm text-green-300">Dex Requirement</option>
+                                    <option value="Int Requirement" className="font-sans text-xs sm:text-sm text-blue-300">Int Requirement</option>
+                                    <option value="Fai Requirement" className="font-sans text-xs sm:text-sm text-yellow-300">Fai Requirement</option>
+                                    <option value="Arc Requirement" className="font-sans text-xs sm:text-sm text-pink-300">Arc Requirement</option>
 
                                     {/* NEW: Scaling */}
-                                    <option value="Str Scaling" className="font-sans text-sm text-red-400">Str Scaling</option>
-                                    <option value="Dex Scaling" className="font-sans text-sm text-green-400">Dex Scaling</option>
-                                    <option value="Int Scaling" className="font-sans text-sm text-blue-400">Int Scaling</option>
-                                    <option value="Fai Scaling" className="font-sans text-sm text-yellow-400">Fai Scaling</option>
-                                    <option value="Arc Scaling" className="font-sans text-sm text-pink-400">Arc Scaling</option>
+                                    <option value="Str Scaling" className="font-sans text-xs sm:text-sm text-red-400">Str Scaling</option>
+                                    <option value="Dex Scaling" className="font-sans text-xs sm:text-sm text-green-400">Dex Scaling</option>
+                                    <option value="Int Scaling" className="font-sans text-xs sm:text-sm text-blue-400">Int Scaling</option>
+                                    <option value="Fai Scaling" className="font-sans text-xs sm:text-sm text-yellow-400">Fai Scaling</option>
+                                    <option value="Arc Scaling" className="font-sans text-xs sm:text-sm text-pink-400">Arc Scaling</option>
 
                                     {/* NEW: Special Attack */}
-                                    <option value="Special Attack FP" className="font-sans text-sm text-cyan-300">Special Attack FP</option>
-                                    <option value="Special Attack Name" className="font-sans text-sm text-cyan-200">Special Attack Name</option>
+                                    <option value="Special Attack FP" className="font-sans text-xs sm:text-sm text-cyan-300">Special Attack FP</option>
+                                    <option value="Special Attack Name" className="font-sans text-xs sm:text-sm text-cyan-200">Special Attack Name</option>
                                 </select>
 
                                 {sortOrder === "asc" ?
@@ -741,8 +741,8 @@ export default function Filter({type,
                                 }
                             </div>
                             <div className="flex flex-col ml-2">
-                                <label className="font-sans text-sm text-[#fcfdae] mr-2 mb-2">Intervallfilter</label>
-                                <button className="font-sans text-base text-[#fcfdae] cursor-pointer w-17 ml-5 flex items-center" onClick={() => setDamageOpen(!damageOpen)}>
+                                <label className="font-sans text-base sm:text-lg text-[#fcfdae] mr-2 mb-2">Intervallfilter</label>
+                                <button className="font-sans text-sm sm:text-base text-[#fcfdae] cursor-pointer w-17 ml-5 flex items-center" onClick={() => setDamageOpen(!damageOpen)}>
                                     <span>Damage</span>
                                     {!damageOpen ?
                                         (<Image src="/arrow_up.png" width={12} height={12} className="w-[12px] h-[12px]" alt="Arrow Up" />)
@@ -753,31 +753,31 @@ export default function Filter({type,
                                 {damageOpen ?
                                     (<div className="flex flex-wrap ml-9 mb-2">
                                         <div className="flex items-center mr-1 mb-2">
-                                            <label className="font-sans text-sm text-white mr-2">Base Damage</label>
+                                            <label className="font-sans text-xs sm:text-sm text-white mr-2">Base Damage</label>
                                             <input value={startIntervallBaseAttack} onChange={(event) => handleIntervallChange("startIntervallBaseAttack", event)} type="number"  step="any" className="w-12 rounded bg-[#0b2829] text-white text-sm px-1 font-sans border-2 border-[#fcfdae] mr-2" />
                                             <input value={endIntervallBaseAttack} onChange={(event) => handleIntervallChange("endIntervallBaseAttack", event)} type="number"  step="any" className="w-12 rounded bg-[#0b2829] text-white text-sm px-1 font-sans border-2 border-[#fcfdae]" />
                                         </div>
 
                                         <div className="flex items-center mr-1">
-                                            <label className="font-sans text-sm text-blue-200 mr-2">Magic Attack</label>
+                                            <label className="font-sans text-xs sm:text-sm text-blue-200 mr-2">Magic Attack</label>
                                             <input value={startIntervallMagicAttack} onChange={(event) => handleIntervallChange("startIntervallMagicAttack", event)} type="number"  step="any" className="w-12 rounded bg-[#0b2829] text-white text-sm px-1 font-sans border-2 border-[#fcfdae] mr-2" />
                                             <input value={endIntervallMagicAttack} onChange={(event) => handleIntervallChange("endIntervallMagicAttack", event)} type="number"  step="any" className="w-12 rounded bg-[#0b2829] text-white text-sm px-1 font-sans border-2 border-[#fcfdae]" />
                                         </div>
 
                                         <div className="flex items-center mr-1">
-                                            <label className="font-sans text-sm text-orange-300 mr-2">Fire Attack</label>
+                                            <label className="font-sans text-xs sm:text-sm text-orange-300 mr-2">Fire Attack</label>
                                             <input value={startIntervallFireAttack} onChange={(event) => handleIntervallChange("startIntervallFireAttack", event)} type="number"  step="any" className="w-12 rounded bg-[#0b2829] text-white text-sm px-1 font-sans border-2 border-[#fcfdae] mr-2" />
                                             <input value={endIntervallFireAttack} onChange={(event) => handleIntervallChange("endIntervallFireAttack", event)} type="number"  step="any" className="w-12 rounded bg-[#0b2829] text-white text-sm px-1 font-sans border-2 border-[#fcfdae]" />
                                         </div>
 
                                         <div className="flex items-center mr-1">
-                                            <label className="font-sans text-sm text-yellow-300 mr-2">Ligt Attack</label>
+                                            <label className="font-sans text-xs sm:text-sm text-yellow-300 mr-2">Ligt Attack</label>
                                             <input value={startIntervallLigtAttack} onChange={(event) => handleIntervallChange("startIntervallLigtAttack", event)} type="number"  step="any" className="w-12 rounded bg-[#0b2829] text-white text-sm px-1 font-sans border-2 border-[#fcfdae] mr-2" />
                                             <input value={endIntervallLigtAttack} onChange={(event) => handleIntervallChange("endIntervallLigtAttack", event)} type="number"  step="any" className="w-12 rounded bg-[#0b2829] text-white text-sm px-1 font-sans border-2 border-[#fcfdae]" />
                                         </div>
 
                                         <div className="flex items-center">
-                                            <label className="font-sans text-sm text-[#ffd894] mr-2">Holy Attack</label>
+                                            <label className="font-sans text-xs sm:text-sm text-[#ffd894] mr-2">Holy Attack</label>
                                             <input value={startIntervallHolyAttack} onChange={(event) => handleIntervallChange("startIntervallHolyAttack", event)} type="number"  step="any" className="w-12 rounded bg-[#0b2829] text-white text-sm px-1 font-sans border-2 border-[#fcfdae] mr-2" />
                                             <input value={endIntervallHolyAttack} onChange={(event) => handleIntervallChange("endIntervallHolyAttack", event)} type="number"  step="any" className="w-12 rounded bg-[#0b2829] text-white text-sm px-1 font-sans border-2 border-[#fcfdae]" />
                                         </div>    
@@ -785,7 +785,7 @@ export default function Filter({type,
                                 :
                                     (<div className="mb-2" />)
                                 }
-                                <button className="font-sans text-base text-[#fcfdae] cursor-pointer w-17 ml-5 flex items-center" onClick={() => setDefenseOpen(!defenseOpen)}>
+                                <button className="font-sans text-sm sm:text-base text-[#fcfdae] cursor-pointer w-17 ml-5 flex items-center" onClick={() => setDefenseOpen(!defenseOpen)}>
                                     <span>Defense</span>
                                     {!defenseOpen ?
                                         (<Image src="/arrow_up.png" width={12} height={12} className="w-[12px] h-[12px]" alt="Arrow Up" />)
@@ -796,31 +796,31 @@ export default function Filter({type,
                                 {defenseOpen ?
                                     (<div className="flex flex-wrap ml-9 mb-2">
                                         <div className="flex items-center mr-1 mb-2">
-                                            <label className="font-sans text-sm text-white mr-2">Parry Defense</label>
+                                            <label className="font-sans text-xs sm:text-sm text-white mr-2">Parry Defense</label>
                                             <input value={startIntervallParryDefense} onChange={(event) => handleIntervallChange("startIntervallParryDefense", event)} type="number"  step="any" className="w-12 rounded bg-[#0b2829] text-white text-sm px-1 font-sans border-2 border-[#fcfdae] mr-2" />
                                             <input value={endIntervallParryDefense} onChange={(event) => handleIntervallChange("endIntervallParryDefense", event)} type="number"  step="any" className="w-12 rounded bg-[#0b2829] text-white text-sm px-1 font-sans border-2 border-[#fcfdae]" />
                                         </div>
 
                                         <div className="flex items-center mr-1">
-                                            <label className="font-sans text-sm text-blue-200 mr-2">Magic Defense</label>
+                                            <label className="font-sans text-xs sm:text-sm text-blue-200 mr-2">Magic Defense</label>
                                             <input value={startIntervallMagicDefense} onChange={(event) => handleIntervallChange("startIntervallMagicDefense", event)} type="number"  step="any" className="w-12 rounded bg-[#0b2829] text-white text-sm px-1 font-sans border-2 border-[#fcfdae] mr-2" />
                                             <input value={endIntervallMagicDefense} onChange={(event) => handleIntervallChange("endIntervallMagicDefense", event)} type="number"  step="any" className="w-12 rounded bg-[#0b2829] text-white text-sm px-1 font-sans border-2 border-[#fcfdae]" />
                                         </div>
 
                                         <div className="flex items-center mr-1">
-                                            <label className="font-sans text-sm text-orange-300 mr-2">Fire Defense</label>
+                                            <label className="font-sans text-xs sm:text-sm text-orange-300 mr-2">Fire Defense</label>
                                             <input value={startIntervallFireDefense} onChange={(event) => handleIntervallChange("startIntervallFireDefense", event)} type="number"  step="any" className="w-12 rounded bg-[#0b2829] text-white text-sm px-1 font-sans border-2 border-[#fcfdae] mr-2" />
                                             <input value={endIntervallFireDefense} onChange={(event) => handleIntervallChange("endIntervallFireDefense", event)} type="number"  step="any" className="w-12 rounded bg-[#0b2829] text-white text-sm px-1 font-sans border-2 border-[#fcfdae]" />
                                         </div>
 
                                         <div className="flex items-center mr-1">
-                                            <label className="font-sans text-sm text-yellow-300 mr-2">Ligt Defense</label>
+                                            <label className="font-sans text-xs sm:text-sm text-yellow-300 mr-2">Ligt Defense</label>
                                             <input value={startIntervallLigtDefense} onChange={(event) => handleIntervallChange("startIntervallLigtDefense", event)} type="number"  step="any" className="w-12 rounded bg-[#0b2829] text-white text-sm px-1 font-sans border-2 border-[#fcfdae] mr-2" />
                                             <input value={endIntervallLigtDefense} onChange={(event) => handleIntervallChange("endIntervallLigtDefense", event)} type="number"  step="any" className="w-12 rounded bg-[#0b2829] text-white text-sm px-1 font-sans border-2 border-[#fcfdae]" />
                                         </div>
 
                                         <div className="flex items-center">
-                                            <label className="font-sans text-sm text-[#ffd894] mr-2">Holy Defense</label>
+                                            <label className="font-sans text-xs sm:text-sm text-[#ffd894] mr-2">Holy Defense</label>
                                             <input value={startIntervallHolyDefense} onChange={(event) => handleIntervallChange("startIntervallHolyDefense", event)} type="number"  step="any" className="w-12 rounded bg-[#0b2829] text-white text-sm px-1 font-sans border-2 border-[#fcfdae] mr-2" />
                                             <input value={endIntervallHolyDefense} onChange={(event) => handleIntervallChange("endIntervallHolyDefense", event)} type="number"  step="any" className="w-12 rounded bg-[#0b2829] text-white text-sm px-1 font-sans border-2 border-[#fcfdae]" />
                                         </div>
@@ -828,7 +828,7 @@ export default function Filter({type,
                                 :
                                     (<div className="mb-2" />)
                                 }
-                                <button className="font-sans text-base text-[#fcfdae] cursor-pointer w-17 ml-5 flex items-center" onClick={() => setScalingOpen(!scalingOpen)}>
+                                <button className="font-sans text-sm sm:text-base text-[#fcfdae] cursor-pointer w-17 ml-5 flex items-center" onClick={() => setScalingOpen(!scalingOpen)}>
                                     <span>Scaling</span>
                                     {!scalingOpen ?
                                         (<Image src="/arrow_up.png" width={12} height={12} className="w-[12px] h-[12px]" alt="Arrow Up" />)
@@ -846,7 +846,7 @@ export default function Filter({type,
                                             "Arc Scaling"  
                                         ].map((label) => (
                                             <div className="flex items-center mr-1 mb-2" key={label}>
-                                                <label className="font-sans text-sm text-orange-200 mr-2">{label}</label>
+                                                <label className="font-sans text-xs sm:text-sm text-orange-200 mr-2">{label}</label>
                                                 <input value={
                                                     useStates[`startIntervall${label.replace(" ", "")}UseState` as keyof typeof useStates]?.[0]
                                                 } onChange={(event) => {
@@ -867,7 +867,7 @@ export default function Filter({type,
                                 :
                                     (<div className="mb-2" />)
                                 }
-                                <button className="font-sans text-base text-[#fcfdae] cursor-pointer w-17 ml-5 flex items-center" onClick={() => setRequirementsOpen(!requirementsOpen)}>
+                                <button className="font-sans text-sm sm:text-base text-[#fcfdae] cursor-pointer w-17 ml-5 flex items-center" onClick={() => setRequirementsOpen(!requirementsOpen)}>
                                     <span>Requirements</span>
                                     {!requirementsOpen ?
                                         (<Image src="/arrow_up.png" width={12} height={12} className="w-[12px] h-[12px]" alt="Arrow Up" />)
@@ -885,7 +885,7 @@ export default function Filter({type,
                                             "Arc Requirement"
                                         ].map((label) => (
                                             <div className="flex items-center mr-1 mb-2" key={label}>
-                                                <label className="font-sans text-sm text-orange-200 mr-2">{label}</label>
+                                                <label className="font-sans text-xs sm:text-sm text-orange-200 mr-2">{label}</label>
                                                 <input value={
                                                     useStates[`startIntervall${label.replace(" ", "")}UseState` as keyof typeof useStates]?.[0]
                                                 } onChange={(event) => {
@@ -906,7 +906,7 @@ export default function Filter({type,
                                 :
                                     (<div className="mb-2" />)
                                 }
-                                <button className="font-sans text-base text-[#fcfdae] cursor-pointer w-50 ml-5 flex items-center" onClick={() => setOtherAttributesOpen(!otherAttributesOpen)}>
+                                <button className="font-sans text-sm sm:text-base text-[#fcfdae] cursor-pointer w-50 ml-5 flex items-center" onClick={() => setOtherAttributesOpen(!otherAttributesOpen)}>
                                     <span>Other Attributes</span>
                                     {!otherAttributesOpen ?
                                         (<Image src="/arrow_up.png" width={12} height={12} className="w-[12px] h-[12px]" alt="Arrow Up" />)
@@ -924,7 +924,7 @@ export default function Filter({type,
                                             "Boost"
                                         ].map((label) => (
                                             <div className="flex items-center mr-1 mb-2" key={label}>
-                                                <label className="font-sans text-sm text-orange-200 mr-2">{label}</label>
+                                                <label className="font-sans text-xs sm:text-sm text-orange-200 mr-2">{label}</label>
                                                 <input value={
                                                     useStates[`startIntervall${label.replace(" ", "")}UseState` as keyof typeof useStates]?.[0]
                                                 } onChange={(event) => {
@@ -956,7 +956,7 @@ export default function Filter({type,
                 <div className={`flex flex-col items-center w-full z-1 ${className}`}>
                     <div className="flex mb-2">
                         <button onClick={openOrCloseFilter} className="cursor-pointer flex items-center">
-                            <span className="font-sans text-base text-[#fcfdae]">Filter</span>
+                            <span className="font-sans text-lg text-[#fcfdae]">Filter</span>
                             {!visible ? 
                                 (<Image src="/arrow_up.png" width={12} height={12} className="w-[12px] h-[12px]" alt="Arrow Up" />)
                             :
@@ -965,35 +965,35 @@ export default function Filter({type,
                         </button>
                     </div>
                     {visible &&
-                        (<div className="w-[35vw] absolute left-[65vw] bg-[#0b2829] flex flex-col border-[#fcfdae] border-solid border-2 rounded-md z-1 pl-2">
-                            <div className="flex w-full mb-2 mt-2">
-                                <label className="font-sans text-sm text-[#fcfdae] mr-2">Sort By</label>
+                        (<div className="w-[70vw] max-3xl:w-[57vw] 3xl:absolute 3xl:w-[17vw] 3xl:right-2 mt-12 bg-[#0b2829] flex flex-col border-[#fcfdae] border-solid border-2 rounded-md z-1">
+                            <div className="flex w-full mb-2 mt-2 ml-2">
+                                <label className="font-sans text-base sm:text-lg text-[#fcfdae] mr-2">Sort By</label>
                                 <select
                                     value={sortBy}
                                     onChange={handleSortByChange}
-                                    className={`border-[#fcfdae] border-solid border-2 rounded-md mr-2 bg-[#0b2829] font-sans text-sm ${getSortByColor(sortBy)}`}
+                                    className={`border-[#fcfdae] border-solid border-2 rounded-md mr-2 bg-[#0b2829] font-sans text-base sm:text-lg w-40 sm:w-45 2xl:w-47 ${getSortByColor(sortBy)}`}
                                 >
                                     {/* Negation */}
-                                    <option value="Physical Negation" className="font-sans text-sm text-white">Physical Negation</option>
-                                    <option value="Strike Negation" className="font-sans text-sm text-white">Strike Negation</option>
-                                    <option value="Slash Negation" className="font-sans text-sm text-white">Slash Negation</option>
-                                    <option value="Pierce Negation" className="font-sans text-sm text-white">Pierce Negation</option>
-                                    <option value="Magic Negation" className="font-sans text-sm text-blue-200">Magic Negation</option>
-                                    <option value="Fire Negation" className="font-sans text-sm text-orange-300">Fire Negation</option>
-                                    <option value="Ligt Negation" className="font-sans text-sm text-yellow-300">Ligt Negation</option>
-                                    <option value="Holy Negation" className="font-sans text-sm text-[#ffd894]">Holy Negation</option>
+                                    <option value="Physical Negation" className="font-sans text-xs sm:text-sm text-white">Physical Negation</option>
+                                    <option value="Strike Negation" className="font-sans text-xs sm:text-sm text-white">Strike Negation</option>
+                                    <option value="Slash Negation" className="font-sans text-xs sm:text-sm text-white">Slash Negation</option>
+                                    <option value="Pierce Negation" className="font-sans text-xs sm:text-sm text-white">Pierce Negation</option>
+                                    <option value="Magic Negation" className="font-sans text-xs sm:text-sm text-blue-200">Magic Negation</option>
+                                    <option value="Fire Negation" className="font-sans text-xs sm:text-sm text-orange-300">Fire Negation</option>
+                                    <option value="Ligt Negation" className="font-sans text-xs sm:text-sm text-yellow-300">Ligt Negation</option>
+                                    <option value="Holy Negation" className="font-sans text-xs sm:text-sm text-[#ffd894]">Holy Negation</option>
 
                                     {/* Resistance */}
-                                    <option value="Immunity" className="font-sans text-sm text-purple-300">Immunity</option>
-                                    <option value="Robustness" className="font-sans text-sm text-red-300">Robustness</option>
-                                    <option value="Focus" className="font-sans text-sm text-blue-300">Focus</option>
-                                    <option value="Vitality" className="font-sans text-sm text-orange-300">Vitality</option>
-                                    <option value="Poise" className="font-sans text-sm text-gray-300">Poise</option>
+                                    <option value="Immunity" className="font-sans text-xs sm:text-sm text-purple-300">Immunity</option>
+                                    <option value="Robustness" className="font-sans text-xs sm:text-sm text-red-300">Robustness</option>
+                                    <option value="Focus" className="font-sans text-xs sm:text-sm text-blue-300">Focus</option>
+                                    <option value="Vitality" className="font-sans text-xs sm:text-sm text-orange-300">Vitality</option>
+                                    <option value="Poise" className="font-sans text-xs sm:text-sm text-gray-300">Poise</option>
 
                                     {/* Misc */}
-                                    <option value="Wgt" className="font-sans text-sm text-orange-200">Wgt</option>
-                                    <option value="Name" className="font-sans text-sm text-white">Name</option>
-                                    <option value="Rarity" className="font-sans text-sm text-purple-300">Rarity</option>
+                                    <option value="Wgt" className="font-sans text-xs sm:text-sm text-orange-200">Wgt</option>
+                                    <option value="Name" className="font-sans text-xs sm:text-sm text-white">Name</option>
+                                    <option value="Rarity" className="font-sans text-xs sm:text-sm text-purple-300">Rarity</option>
                                 </select>
 
                                 {sortOrder === "asc" ?
@@ -1006,9 +1006,9 @@ export default function Filter({type,
                                     </button>)
                                 }
                             </div>
-                            <div className="flex flex-col">
-                                <label className="font-sans text-sm text-[#fcfdae] mr-2 mb-2">Intervallfilter</label>
-                                <button className="font-sans text-base text-[#fcfdae] cursor-pointer w-17 ml-5 flex items-center" onClick={() => setNegationOpen(!negationOpen)}>
+                            <div className="flex flex-col ml-2">
+                                <label className="font-sans text-base sm:text-lg text-[#fcfdae] mr-2 mb-2">Intervallfilter</label>
+                                <button className="font-sans text-sm sm:text-base text-[#fcfdae] cursor-pointer w-17 ml-5 flex items-center" onClick={() => setNegationOpen(!negationOpen)}>
                                     <span>Negation</span>
                                     {!negationOpen ?
                                         (<Image src="/arrow_up.png" width={12} height={12} className="w-[12px] h-[12px]" alt="Arrow Up" />)
@@ -1020,20 +1020,20 @@ export default function Filter({type,
                                     (<div className="flex flex-wrap ml-9 mb-2">
                                         {["Physical Negation", "Strike Negation", "Slash Negation", "Pierce Negation", "Magic Negation", "Fire Negation", "Ligt Negation", "Holy Negation"].map((label) => (
                                             <div className="flex items-center mr-1 mb-2" key={label}>
-                                                <label className={`font-sans text-sm ${getSortByColor(label.replace(" Negation", ""))} mr-2`}>{label}</label>
+                                                <label className={`font-sans text-xs sm:text-sm ${getSortByColor(label.replace(" Negation", ""))} mr-2`}>{label}</label>
                                                 <input value={
                                                     useStates[`startIntervall${label.replace(/ /g, "")}UseState` as keyof typeof useStates]?.[0]
-                                                } onChange={(event) => handleIntervallChange(`startIntervall${label.replace(/ /g, "")}`, event)} type="number" step="any" className="w-12 rounded bg-[#0b2829] text-white text-sm px-1 font-sans border-2 border-[#fcfdae]" />
+                                                } onChange={(event) => handleIntervallChange(`startIntervall${label.replace(/ /g, "")}`, event)} type="number" step="any" className="w-12 rounded bg-[#0b2829] text-white text-xs sm:text-sm px-1 font-sans border-2 border-[#fcfdae]" />
                                                 <input value={
                                                     useStates[`endIntervall${label.replace(/ /g, "")}UseState` as keyof typeof useStates]?.[0]
-                                                } onChange={(event) => handleIntervallChange(`endIntervall${label.replace(/ /g, "")}`, event)} type="number" step="any" className="w-12 rounded bg-[#0b2829] text-white text-sm px-1 font-sans border-2 border-[#fcfdae]" />
+                                                } onChange={(event) => handleIntervallChange(`endIntervall${label.replace(/ /g, "")}`, event)} type="number" step="any" className="w-12 rounded bg-[#0b2829] text-white text-xs sm:text-sm px-1 font-sans border-2 border-[#fcfdae]" />
                                             </div>
                                         ))}
                                     </div>)
                                 :
                                     (<div className="mb-2" />)
                                 }
-                                <button className="font-sans text-base text-[#fcfdae] cursor-pointer w-17 ml-5 flex items-center" onClick={() => setResistanceOpen(!resistanceOpen)}>
+                                <button className="font-sans text-sm sm:text-base text-[#fcfdae] cursor-pointer w-17 ml-5 flex items-center" onClick={() => setResistanceOpen(!resistanceOpen)}>
                                     <span>Resistance</span>
                                     {!resistanceOpen ?
                                         (<Image src="/arrow_up.png" width={12} height={12} className="w-[12px] h-[12px]" alt="Arrow Up" />)
@@ -1045,20 +1045,20 @@ export default function Filter({type,
                                     (<div className="flex flex-wrap ml-9 mb-2">
                                         {["Immunity", "Robustness", "Focus", "Vitality", "Poise"].map((label) => (
                                             <div className="flex items-center mr-1 mb-2" key={label}>
-                                                <label className={`font-sans text-sm ${getSortByColor(label)} mr-2`}>{label}</label>
+                                                <label className={`font-sans text-xs sm:text-sm ${getSortByColor(label)} mr-2`}>{label}</label>
                                                 <input value={
                                                     useStates[`startIntervall${label}UseState` as keyof typeof useStates]?.[0]
-                                                } onChange={(event) => handleIntervallChange(`startIntervall${label}`, event)} type="number" step="any" className="w-12 rounded bg-[#0b2829] text-white text-sm px-1 font-sans border-2 border-[#fcfdae]" />
+                                                } onChange={(event) => handleIntervallChange(`startIntervall${label}`, event)} type="number" step="any" className="w-12 rounded bg-[#0b2829] text-white text-xs sm:text-sm px-1 font-sans border-2 border-[#fcfdae]" />
                                                 <input value={
                                                     useStates[`endIntervall${label}UseState` as keyof typeof useStates]?.[0]
-                                                } onChange={(event) => handleIntervallChange(`endIntervall${label}`, event)} type="number" step="any" className="w-12 rounded bg-[#0b2829] text-white text-sm px-1 font-sans border-2 border-[#fcfdae]" />
+                                                } onChange={(event) => handleIntervallChange(`endIntervall${label}`, event)} type="number" step="any" className="w-12 rounded bg-[#0b2829] text-white text-xs sm:text-sm px-1 font-sans border-2 border-[#fcfdae]" />
                                             </div>
                                         ))}
                                     </div>)
                                 :
                                     (<div className="mb-2" />)
                                 }
-                                <button className="font-sans text-base text-[#fcfdae] cursor-pointer w-50 ml-5 flex items-center" onClick={() => setOtherAttributesOpen(!otherAttributesOpen)}>
+                                <button className="font-sans text-sm sm:text-base text-[#fcfdae] cursor-pointer w-50 ml-5 flex items-center" onClick={() => setOtherAttributesOpen(!otherAttributesOpen)}>
                                     <span>Other Attributes</span>
                                     {!otherAttributesOpen ?
                                         (<Image src="/arrow_up.png" width={12} height={12} className="w-[12px] h-[12px]" alt="Arrow Up" />)
@@ -1069,9 +1069,9 @@ export default function Filter({type,
                                 {otherAttributesOpen ?
                                     (<div className="flex flex-wrap ml-9 mb-2">
                                         <div className="flex items-center mr-1 mb-2">
-                                            <label className="font-sans text-sm text-orange-200 mr-2">Wgt.</label>
-                                            <input value={startIntervallWgt} onChange={(event) => handleIntervallChange("startIntervallWgt", event)} type="number" step="any" className="w-12 rounded bg-[#0b2829] text-white text-sm px-1 font-sans border-2 border-[#fcfdae]" />
-                                            <input value={endIntervallWgt} onChange={(event) => handleIntervallChange("endIntervallWgt", event)} type="number" step="any" className="w-12 rounded bg-[#0b2829] text-white text-sm px-1 font-sans border-2 border-[#fcfdae]" />
+                                            <label className="font-sans text-xs sm:text-sm text-orange-200 mr-2">Wgt.</label>
+                                            <input value={startIntervallWgt} onChange={(event) => handleIntervallChange("startIntervallWgt", event)} type="number" step="any" className="w-12 rounded bg-[#0b2829] text-white text-xs sm:text-sm px-1 font-sans border-2 border-[#fcfdae]" />
+                                            <input value={endIntervallWgt} onChange={(event) => handleIntervallChange("endIntervallWgt", event)} type="number" step="any" className="w-12 rounded bg-[#0b2829] text-white text-xs sm:text-sm px-1 font-sans border-2 border-[#fcfdae]" />
                                         </div>
                                     </div>)
                                 :
@@ -1088,7 +1088,7 @@ export default function Filter({type,
                 <div className={`flex flex-col items-center w-full z-1 ${className}`}>
                     <div className="flex mb-2">
                         <button onClick={openOrCloseFilter} className="cursor-pointer flex items-center">
-                            <span className="font-sans text-base text-[#fcfdae]">Filter</span>
+                            <span className="font-sans text-lg text-[#fcfdae]">Filter</span>
                             {!visible ? 
                                 (<Image src="/arrow_up.png" width={12} height={12} className="w-[12px] h-[12px]" alt="Arrow Up" />)
                             :
@@ -1097,19 +1097,19 @@ export default function Filter({type,
                         </button>
                     </div>
                     {visible &&
-                        (<div className="w-[35vw] absolute left-[65vw] bg-[#0b2829] flex flex-col border-[#fcfdae] border-solid border-2 rounded-md z-1 pl-2">
-                            <div className="flex w-full mb-2 mt-2">
-                                <label className="font-sans text-sm text-[#fcfdae] mr-2">Sort By</label>
+                        (<div className="w-[70vw] max-3xl:w-[57vw] 3xl:absolute 3xl:w-[18vw] 3xl:right-2 mt-12 bg-[#0b2829] flex flex-col border-[#fcfdae] border-solid border-2 rounded-md z-1">
+                            <div className="flex w-full mb-2 mt-2 ml-2">
+                                <label className="font-sans text-base sm:text-lg text-[#fcfdae] mr-2">Sort By</label>
                                 <select
                                     value={sortBy}
                                     onChange={handleSortByChange}
-                                    className={`border-[#fcfdae] border-solid border-2 rounded-md mr-2 bg-[#0b2829] font-sans text-sm ${getSortByColor(sortBy)}`}
+                                    className={`border-[#fcfdae] border-solid border-2 rounded-md mr-2 bg-[#0b2829] font-sans text-base sm:text-lg w-40 sm:w-40 2xl:w-40 ${getSortByColor(sortBy)}`}
                                 >
-                                    <option value="Name" className="font-sans text-sm text-white">Name</option>
-                                    <option value="Rarity" className="font-sans text-sm text-purple-300">Rarity</option>
-                                    <option value="Location" className="font-sans text-sm text-green-300">Location</option>
-                                    <option value="Reward Runes" className="font-sans text-sm text-yellow-300">Reward Runes</option>
-                                    <option value="HP" className="font-sans text-sm text-red-300">HP</option>
+                                    <option value="Name" className="font-sans text-xs sm:text-sm text-white">Name</option>
+                                    <option value="Rarity" className="font-sans text-xs sm:text-sm text-purple-300">Rarity</option>
+                                    <option value="Location" className="font-sans text-xs sm:text-sm text-green-300">Location</option>
+                                    <option value="Reward Runes" className="font-sans text-xs sm:text-sm text-yellow-300">Reward Runes</option>
+                                    <option value="HP" className="font-sans text-xs sm:text-sm text-red-300">HP</option>
                                 </select>
 
                                 {sortOrder === "asc" ?
@@ -1122,32 +1122,32 @@ export default function Filter({type,
                                     </button>)
                                 }
                             </div>
-                            <div className="flex flex-col">
-                                <label className="font-sans text-sm text-[#fcfdae] mr-2 mb-2">Filter</label>
+                            <div className="flex flex-col ml-2">
+                                <label className="font-sans text-base sm:text-lg text-[#fcfdae] mr-2 mb-2">Filter</label>
                                 
-                                <button className="font-sans text-base text-[#fcfdae] cursor-pointer w-17 ml-5 flex items-center" onClick={() => setRewardsOpen(!rewardsOpen)}>
+                                <button className="font-sans text-sm sm:text-base text-[#fcfdae] cursor-pointer w-17 ml-5 flex items-center" onClick={() => setRewardsOpen(!rewardsOpen)}>
                                     <span>Rewards</span>
                                     {!rewardsOpen ? (<Image src="/arrow_up.png" width={12} height={12} className="w-[12px] h-[12px]" alt="Arrow Up" />) : (<Image src="/arrow_down.png" width={12} height={12} className="w-[12px] h-[12px]" alt="Arrow Down" />)}
                                 </button>
                                 {rewardsOpen && (
                                     <div className="flex flex-wrap ml-9 mb-2">
                                         <div className="flex items-center mr-1 mb-2">
-                                            <label className="font-sans text-sm text-yellow-300 mr-2">Runes</label>
-                                            <input value={startIntervallRewardRunes} onChange={(event) => handleIntervallChange("startIntervallRewardRunes", event)} type="number" step="any" className="w-24 rounded bg-[#0b2829] text-white text-sm px-1 font-sans border-2 border-[#fcfdae]" />
-                                            <input value={endIntervallRewardRunes} onChange={(event) => handleIntervallChange("endIntervallRewardRunes", event)} type="number" step="any" className="w-24 rounded bg-[#0b2829] text-white text-sm px-1 font-sans border-2 border-[#fcfdae]" />
+                                            <label className="font-sans text-xs sm:text-sm text-yellow-300 mr-2">Runes</label>
+                                            <input value={startIntervallRewardRunes} onChange={(event) => handleIntervallChange("startIntervallRewardRunes", event)} type="number" step="any" className="w-24 rounded bg-[#0b2829] text-white text-xs sm:text-sm px-1 font-sans border-2 border-[#fcfdae]" />
+                                            <input value={endIntervallRewardRunes} onChange={(event) => handleIntervallChange("endIntervallRewardRunes", event)} type="number" step="any" className="w-24 rounded bg-[#0b2829] text-white text-xs sm:text-sm px-1 font-sans border-2 border-[#fcfdae]" />
                                         </div>
                                     </div>
                                 )}
 
-                                <button className="font-sans text-base text-[#fcfdae] cursor-pointer w-17 ml-5 flex items-center" onClick={() => setStatsOpen(!statsOpen)}>
+                                <button className="font-sans text-sm sm:text-base text-[#fcfdae] cursor-pointer w-17 ml-5 flex items-center" onClick={() => setStatsOpen(!statsOpen)}>
                                     <span>Stats</span>
                                     {!statsOpen ? (<Image src="/arrow_up.png" width={12} height={12} className="w-[12px] h-[12px]" alt="Arrow Up" />) : (<Image src="/arrow_down.png" width={12} height={12} className="w-[12px] h-[12px]" alt="Arrow Down" />)}
                                 </button>
                                 {statsOpen && (
                                      <div className="flex items-center ml-9 mb-2">
-                                        <label className="font-sans text-sm text-red-300 mr-2">HP</label>
-                                        <input value={startIntervallHp} onChange={(event) => handleIntervallChange("startIntervallHp", event)} type="number" step="any" className="w-24 rounded bg-[#0b2829] text-white text-sm px-1 font-sans border-2 border-[#fcfdae]" />
-                                        <input value={endIntervallHp} onChange={(event) => handleIntervallChange("endIntervallHp", event)} type="number" step="any" className="w-24 rounded bg-[#0b2829] text-white text-sm px-1 font-sans border-2 border-[#fcfdae]" />
+                                        <label className="font-sans text-xs sm:text-sm text-red-300 mr-2">HP</label>
+                                        <input value={startIntervallHp} onChange={(event) => handleIntervallChange("startIntervallHp", event)} type="number" step="any" className="w-24 rounded bg-[#0b2829] text-white text-xs sm:text-sm px-1 font-sans border-2 border-[#fcfdae]" />
+                                        <input value={endIntervallHp} onChange={(event) => handleIntervallChange("endIntervallHp", event)} type="number" step="any" className="w-24 rounded bg-[#0b2829] text-white text-xs sm:text-sm px-1 font-sans border-2 border-[#fcfdae]" />
                                     </div>
                                 )}
                             </div>
@@ -1160,7 +1160,7 @@ export default function Filter({type,
                 <div className={`flex flex-col items-center w-full z-1 ${className}`}>
                     <div className="flex mb-2">
                         <button onClick={openOrCloseFilter} className="cursor-pointer flex items-center">
-                            <span className="font-sans text-base text-[#fcfdae]">Filter</span>
+                            <span className="font-sans text-lg text-[#fcfdae]">Filter</span>
                             {!visible ? 
                                 (<Image src="/arrow_up.png" width={12} height={12} className="w-[12px] h-[12px]" alt="Arrow Up" />)
                             :
@@ -1169,17 +1169,17 @@ export default function Filter({type,
                         </button>
                     </div>
                     {visible &&
-                        (<div className="w-[35vw] absolute left-[65vw] bg-[#0b2829] flex flex-col border-[#fcfdae] border-solid border-2 rounded-md z-1 pl-2">
-                            <div className="flex w-full mb-2 mt-2">
-                                <label className="font-sans text-sm text-[#fcfdae] mr-2">Sort By</label>
+                        (<div className="w-[70vw] max-3xl:w-60 3xl:absolute 3xl:w-[15vw] 3xl:right-2 mt-12 bg-[#0b2829] flex flex-col border-[#fcfdae] border-solid border-2 rounded-md z-1">
+                            <div className="flex w-full mb-2 mt-2 ml-2">
+                                <label className="font-sans text-base sm:text-lg text-[#fcfdae] mr-2">Sort By</label>
                                 <select
                                     value={sortBy}
                                     onChange={handleSortByChange}
-                                    className={`border-[#fcfdae] border-solid border-2 rounded-md mr-2 bg-[#0b2829] font-sans text-sm ${getSortByColor(sortBy)}`}
+                                    className={`border-[#fcfdae] border-solid border-2 rounded-md mr-2 bg-[#0b2829] font-sans text-base sm:text-lg w-25 sm:w-27 2xl:w-29 ${getSortByColor(sortBy)}`}
                                 >
-                                    <option value="Name" className="font-sans text-sm text-white">Name</option>
-                                    <option value="Rarity" className="font-sans text-sm text-purple-300">Rarity</option>
-                                    <option value="Location" className="font-sans text-sm text-green-300">Location</option>
+                                    <option value="Name" className="font-sans text-xs sm:text-sm text-white">Name</option>
+                                    <option value="Rarity" className="font-sans text-xs sm:text-sm text-purple-300">Rarity</option>
+                                    <option value="Location" className="font-sans text-xs sm:text-sm text-green-300">Location</option>
                                 </select>
 
                                 {sortOrder === "asc" ?

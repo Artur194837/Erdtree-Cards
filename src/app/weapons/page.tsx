@@ -1,7 +1,6 @@
 "use client";
 /// <reference types="react" />
 import React from 'react';
-import CardRow from "@/components/ui/cardRow";
 import CardData from "../lib/cardData";
 import { useState, useEffect } from 'react';
 import Filter from '@/components/ui/filter';
@@ -10,25 +9,32 @@ import { sortCards } from '../lib/functions';
 import { filterCards } from '../lib/functions';
 import useStateToCardDataAttribute from '../lib/useStateToCardDataAttribute';
 import { getCardsThatFitToSearchParam } from '../lib/functions';
+import CardWeapon from '@/components/ui/card_weapon';
 
 export default function Main() {
+  // Funktion zum Erstellen der Datenbank über einen API-Aufruf.
   async function createDB(){
+    // Sendet eine GET-Anfrage an den API-Endpunkt /api/createDB.
     await fetch("/api/createDB", {
           method: "GET"
         });
   }
 
+  // useEffect-Hook, der beim ersten Rendern der Komponente die Datenbank erstellt.
   useEffect(() => {
     createDB();
-  }, []);
+  }, []); // Leeres Abhängigkeitsarray sorgt dafür, dass der Effekt nur einmal ausgeführt wird.
 
-  const [cardsStackedByFour, setCardsStackedByFour] = useState<CardData[][]>([]);
+  // State für die Liste der anzuzeigenden Karten.
+  const [cards, setCards] = useState<CardData[]>([]);
 
+  // State für den Suchparameter aus der Suchleiste.
   const [searchParam, setSearchParam] = useState("");
 
   const sortByUseState = useState("Base Attack");
   const sortOrderUseState = useState<"asc" | "desc">("asc");
 
+  // States für die verschiedenen Filter-Intervalle (Start- und Endwerte).
   const startIntervallBaseAttackUseState = useState("");
   const endIntervallBaseAttackUseState = useState("");
 
@@ -104,6 +110,7 @@ export default function Main() {
   const startIntervallBoostUseState = useState("");
   const endIntervallBoostUseState = useState("");
 
+  // Bündelt alle States für die Filter-Komponente.
   const useStates = {
     sortByUseState,
     sortOrderUseState,
@@ -159,12 +166,16 @@ export default function Main() {
     endIntervallBoostUseState,
   };
 
+  // useEffect-Hook, der die Kartenliste aktualisiert, wenn sich Sortier-, Filter- oder Suchparameter ändern.
   useEffect(() => {
+    debugger;
     let cards: CardData[] = [];
 
+    // Ruft Karten ab, die zum aktuellen Suchparameter und Typ "Weapon" passen.
     getCardsThatFitToSearchParam(searchParam, "Weapon").then((res) => {
       cards = res; 
 
+      // Ermittelt das Attribut, nach dem sortiert werden soll.
       const sortKey = useStateToCardDataAttribute[useStates.sortByUseState[0]];
 
       if (!sortKey) {
@@ -172,26 +183,24 @@ export default function Main() {
         return;
       }
 
+      // Sortiert die abgerufenen Karten.
       cards = sortCards(cards, sortKey as keyof CardData, sortOrderUseState[0]);
 
       let filteredCards: CardData[] = [];
       let validFilterFound = false;
 
+      // Filtert die Karten basierend auf den Intervall-States.
       let response = filterCards(cards, useStates);
 
       filteredCards = response[0];
       validFilterFound = response[1];
         
+      // Wenn kein Filter aktiv ist, zeige alle Karten an.
       if(!validFilterFound)
         filteredCards = cards;
 
-      // 4) Karten wieder stapeln
-      const cardsStacked: CardData[][] = [];
-      for (let i = 0; i < filteredCards.length; i += 4) {
-        cardsStacked.push(filteredCards.slice(i, i + 4));
-      }
-
-      setCardsStackedByFour(cardsStacked);
+      // Aktualisiert den State der Karten.
+      setCards(filteredCards);
     });
   }, [
     sortByUseState[0],
@@ -279,12 +288,18 @@ export default function Main() {
 
   return (
     <div className='mt-2'>
+      {/* Suchleiste */}
       <Searchbar searchParamUseState={[searchParam, setSearchParam]}/>
+      {/* Filter-Komponente */}
       <Filter useStates={useStates} className="mt-2" type="Weapon"/>
-      <div className="w-3/4 relative left-90 mt-4">
-        {cardsStackedByFour.map((cardRow, index : number) => (
-          <CardRow key={index} cardRow={cardRow} cardType="Weapon" />
-        ))}
+      {/* Karten-Grid */}
+      <div className='flex justify-center'>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 2xl:grid-cols-3 gap-8 w-auto mt-4">
+          {/* Rendert für jede Karte eine CardWeapon-Komponente */}
+          {cards.map((card, index : number) => (
+            <CardWeapon key={index} card={card} />
+          ))}
+        </div>
       </div>
     </div>
   );

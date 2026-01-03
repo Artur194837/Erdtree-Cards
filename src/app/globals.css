@@ -1,10 +1,17 @@
 @import "tailwindcss";
 
+/* Konfiguration für das Tailwind-Theme */
+@theme{
+  --breakpoint-3xl: 1640px;
+}
+
+/* Definition der CSS-Variablen für den Standard-Modus (Hell) */
 :root {
   --background: #ffffff;
   --foreground: #171717;
 }
 
+/* Inline-Theme-Konfiguration, die CSS-Variablen mit Tailwind verknüpft */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -12,6 +19,7 @@
   --font-mono: var(--font-geist-mono);
 }
 
+/* Anpassungen für den Dunkel-Modus basierend auf den Systemeinstellungen */
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
@@ -19,14 +27,16 @@
   }
 }
 
+/* Globale Stile für den Body */
 body {
   background: var(--background);
   color: var(--foreground);
-  /* Use the CSS variable set by next/font.local. The variable contains a font-family that
-     references the local Mantinia font and fallbacks provided by Next's font loader. */
+  /* Verwendet die von next/font.local gesetzte CSS-Variable. Die Variable enthält eine font-family, die
+     auf die lokale Mantinia-Schriftart verweist, sowie Fallbacks, die vom Next.js Font-Loader bereitgestellt werden. */
   font-family: var(--font-erdtree), Arial, Helvetica, sans-serif;
 }
 
+/* Animation für ein subtiles goldenes Leuchten (z.B. für legendäre Karten) */
 @keyframes subtle-glow {
     0%, 100% { box-shadow: 0 0 5px #ffd700; } /* Start- & Endfarbe */
     50% { box-shadow: 0 0 15px #fffaa9; } /* Maximaler Glanz */
@@ -35,6 +45,7 @@ body {
     animation: subtle-glow 3s ease-in-out infinite;
 }
 
+/* Animation zum Schrumpfen und Ausblenden von Elementen */
 @keyframes shrink-fade {
     0% {
         transform: scale(1); /* Volle Größe am Anfang */
@@ -46,6 +57,7 @@ body {
     }
 }
 
+/* Spezifische Stile für das Namensfeld (Schatten für 3D-Effekt) */
 #name{
     box-shadow: 
         /* Schatten 1: Oben (negativer Y-Versatz) & Links (negativer X-Versatz) - WEISS */
@@ -54,11 +66,13 @@ body {
       3px 3px 3px 0px black;
 }
 
+/* Spezifische Stile für den Wertebereich (Goldener Rahmen) */
 #werte{
   border: 20px solid transparent;
-  border-image: url("/gold-border.png") 100;
+  border-image: url("/gold-border.png") 120;
 }
 
+/* Spezifische Stile für die Karte (Hintergrund mit Textur und Verläufen) */
 #card{
    background: 
     radial-gradient(circle at 20% 30%, rgba(0, 0, 0, 0.4), transparent 50%),

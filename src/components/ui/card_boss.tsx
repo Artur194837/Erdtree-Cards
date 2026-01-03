@@ -1,3 +1,4 @@
+// Importiert notwendige Typen und Komponenten
 import CardData from "@/app/lib/cardData";
 import { CardImage } from "./cardImage";
 import Image from "next/image";
@@ -8,6 +9,7 @@ interface CardProps {
     className?: string;
 }
 
+// Map zur Zuordnung von Seltenheitsstufen zu den entsprechenden TailwindCSS-Rahmenklassen.
 const rarityBorderMap: { [key: string]: string } = {
     'Common': 'border-gray-400 border-4',
     'Rare': 'border-blue-500 border-4',
@@ -23,19 +25,21 @@ export default function CardBoss({ card, className} : CardProps) {
     // 2. Die passende Rahmenklasse abrufen (mit Fallback)
     const dynamicBorderClass = rarityBorderMap[rarity] || defaultBorder;
     
-    const combinedClasses = `flex flex-col justify-between items-center bg-[#966c57] rounded-xs w-70 h-145 overflow-hidden relative min-h-0 ${dynamicBorderClass} ${className}`;
+    // Kombiniert die Basis-Stylingklassen mit der dynamischen Rahmenklasse und optionalen weiteren Klassen.
+    const combinedClasses = `flex flex-col justify-between items-center bg-[#966c57] rounded-xs w-50 h-115 sm:w-65 sm:h-135 lg:w-75 lg:h-155 2xl:w-80 2xl:h-165 overflow-hidden relative min-h-0 ${dynamicBorderClass} ${className}`;
 
-    if(card.reward_runes === null)
+    // Setzt Standardwert für Runenbelohnung, falls nicht definiert.
+    if(card.reward_runes === undefined)
         card.reward_runes = 0;
 
-    // Fügen Sie diese Hilfsfunktion vor dem return-Block Ihrer Komponente hinzu
+    // Hilfsfunktion zum Zuordnen von Schadens-/Resistenztypen zu farbigen Labels.
     function mapTypeToLabel(type: string | null | undefined, index: number){
         // Wenn der Wert null, leer oder "None" ist, geben wir nichts zurück
         if (!type || type === "None" || type.trim() === "") {
             return null;
         }
 
-        let tailwindColorClass = 'text-white'; // Default für physische Typen
+        let tailwindColorClass = 'text-white'; // Standardfarbe für physische Typen
 
         // Zuweisung der Farbe basierend auf dem Typ
         switch (type) {
@@ -85,7 +89,7 @@ export default function CardBoss({ card, className} : CardProps) {
                 break;
         }
 
-    // Rückgabe des JSX-Elements
+    // Rückgabe des JSX-Elements (Label)
     return (
         <label key={index} className={`text-xs ${tailwindColorClass}`}>
             {type}
@@ -94,48 +98,61 @@ export default function CardBoss({ card, className} : CardProps) {
 };
 
     return (
+        // Hauptcontainer der Karte
         <div id="card" className={combinedClasses}>
-            <label id="name" className="text-[#FFFAA9] text-2xl mt-3 p-1 border-none text-center">{card.name}</label>
-            <CardImage className="mt-3" image_data={card.image_data} cardName={card.name} image_mime={card.image_mime} />
+            {/* Name des Bosses */}
+            <label id="name" className="text-[#FFFAA9] text-lg sm:text-xl lg:text-2xl mt-3 p-1 border-none text-center">{card.name}</label>
+            {/* Bild des Bosses */}
+            <CardImage className="mt-3 w-[160px] h-[180px] sm:w-[200px] sm:h-[250px] lg:w-[240px] lg:h-[270px] absolute top-15 sm:top-13 lg:top-20" image_data={card.image_data} cardName={card.name} image_mime={card.image_mime} />
+            {/* Container für Werte und Informationen */}
             <div id="werte" className="w-full mt-2">
                 <div className="border-none flex flex-col w-full mb-2">
+                    {/* Fundort (falls vorhanden) */}
                     {card.location !== null ?
                         (<div className="flex">
-                            <label className="text-xs text-white font-sans mr-1">Location</label>
-                            <label className="text-xs text-orange-200 font-sans">{card.location}</label>
+                            <label className="text-[7px] sm:text-xs lg:text-sm text-white font-sans mr-1">Location</label>
+                            <label className="text-[7px] sm:text-xs lg:text-sm text-orange-200 font-sans">{card.location}</label>
                         </div>)
                     :
                         (null)
                     }
+                    {/* Runenbelohnung */}
                     <div className="flex">
-                        <Image src="/runes.png" width={15} height={15} alt="Runes Symbol"/>
-                        <label className="text-xs text-white font-sans">
+                        <Image src="/runes.png" width={15} height={15} className="w-2 lg:w-4" alt="Runes Symbol"/>
+                        <label className="text-[7px] sm:text-xs lg:text-sm text-white font-sans">
                             {card.reward_runes}
                         </label>
                     </div>
+                    {/* Weitere Belohnungen (Items) */}
                     {card.reward_one !== null ?
-                        (<label className="text-xs text-orange-200 font-sans">
+                        (<label className="text-[7px] sm:text-xs lg:text-sm text-orange-200 font-sans">
                             {card.reward_one}
                         </label>)
                     :
                         (null)}
                     {card.reward_two !== null ?
-                        (<label className="text-xs text-orange-200 font-sans">
+                        (<label className="text-[7px] sm:text-xs lg:text-sm text-orange-200 font-sans">
                             {card.reward_two}
                         </label>)
                     :
                         (null)}
                     {card.reward_three !== null ?
-                        (<label className="text-xs text-orange-200 font-sans">
+                        (<label className="text-[7px] sm:text-xs lg:text-sm text-orange-200 font-sans">
                             {card.reward_three}
                         </label>)
                     :
                         (null)}
-                    <label className="text-xs text-red-300 font-sans">HP: {card.hp}</label>
+                    {/* Lebenspunkte (HP) */}
+                    {card.hp !== undefined ? 
+                        (<label className="text-[7px] sm:text-xs lg:text-sm text-red-300 font-sans">HP: {card.hp}</label>)
+                    :
+                        (null)}
+                    {/* Stärken, Immunitäten und Schwächen */}
                     <div className="flex">
+                        {/* Stärken */}
                         {card.strong_vs_1 !== "None" || card.strong_vs_2 !== "None" || card.strong_vs_3 !== "None" || card.strong_vs_4 !== "None" ?
                             (<div className="flex flex-col mr-2">
-                                <label className="text-xs text-white font-sans">
+                                <label className="text-[7px] sm:text-xs lg:text-sm text-white font-sans">
                                     Stronger VS
                                 </label>
 
@@ -146,9 +163,10 @@ export default function CardBoss({ card, className} : CardProps) {
                             </div>)
                         :
                             (null)}
+                        {/* Immunitäten */}
                         {card.immune_to_1 !== "None" || card.immune_to_2 !== "None" || card.immune_to_3 !== "None" || card.immune_to_4 !== "None" ?
                             (<div className="flex flex-col mr-2">
-                                <label className="text-xs text-white font-sans">
+                                <label className="text-[7px] sm:text-xs lg:text-sm text-white font-sans">
                                     Immune to
                                 </label>
 
@@ -159,9 +177,10 @@ export default function CardBoss({ card, className} : CardProps) {
                             </div>)
                         :
                             (null)}
+                        {/* Schwächen */}
                         {card.weak_to_1 !== "None" || card.weak_to_2 !== "None" || card.weak_to_3 !== "None" || card.weak_to_4 !== "None" ?
                             (<div className="flex flex-col">
-                                <label className="text-xs text-white font-sans">
+                                <label className="text-[7px] sm:text-xs lg:text-sm text-white font-sans">
                                     Weak to
                                 </label>
 

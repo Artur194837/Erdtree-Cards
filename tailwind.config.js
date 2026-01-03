@@ -8,10 +8,9 @@ module.exports = {
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    textColor: theme => theme('colors'),
-     textColor: {
-       'erdtree-gold': '#FFFAA9'
-     }
+    colors: {
+      'erdtree-gold': '#FFFAA9',
+    }
   },
   plugins: [],
 }

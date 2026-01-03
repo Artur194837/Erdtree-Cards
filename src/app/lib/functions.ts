@@ -3,6 +3,22 @@ import { Dispatch, SetStateAction } from "react";
 import { UseStatesI } from "./useStates";
 import DBResponse from "./response";
 
+//Zum Sortieren nach rarity
+function rarityToNumber(rarity: any): number {
+  switch (rarity) {
+    case "Common":
+      return 0;
+    case "Rare":
+      return 1;
+    case "Epic":
+      return 2;
+    case "Legendary":
+      return 3;
+    default:
+      return 0;
+  }
+}
+
 export function sortCards(cards: CardData[], sortKey: keyof CardData, sortOrder: "asc" | "desc"){
     const multiplier = sortOrder === "asc" ? 1 : -1;
 
@@ -10,6 +26,7 @@ export function sortCards(cards: CardData[], sortKey: keyof CardData, sortOrder:
       cards.sort((a, b) => {
         let valA = a[sortKey];
 
+        // Wenn ein Wert undefined ist wird dieser als 0 dargestellt, damit dieser nicht manuell eingetragen werden muss
         if(valA === undefined)
           valA = 0;
 
@@ -18,10 +35,10 @@ export function sortCards(cards: CardData[], sortKey: keyof CardData, sortOrder:
         if(valB === undefined)
           valB = 0;
 
-        // undefined schützen
-        if (valA == null && valB == null) return 0;
-        if (valA == null) return 1 * multiplier;
-        if (valB == null) return -1 * multiplier;
+        if(sortKey === "rarity"){
+          valA = rarityToNumber(valA);
+          valB = rarityToNumber(valB);
+        }
 
         // numerisch sortieren, falls möglich
         if (typeof valA === "number" && typeof valB === "number") {
@@ -31,6 +48,7 @@ export function sortCards(cards: CardData[], sortKey: keyof CardData, sortOrder:
         valA = String(valA);
         valB = String(valB);
 
+        // alphabetisch sortieren
         return valA.toLowerCase().trim().localeCompare(
           valB.toLowerCase().trim(),
           'en',
@@ -43,17 +61,17 @@ export function sortCards(cards: CardData[], sortKey: keyof CardData, sortOrder:
 
 export function filterCards(cards: CardData[], useStates: UseStatesI) : [CardData[], boolean]{
   let filteredCards = [];
-  let validFilterFound = false;
+  let validFilterFound = false; //Wenn kein valider Filter gefunden wurde werden alle Karten angezeigt
   
   for(let card of cards){
     let cardAttribute: keyof CardData = "base_attack";
-    let cardValid = true;
+    let cardValid = true; //Karte wird erst Mal als valide angenommen und wird erst unvalide wenn ein Filter nicht zutrifft
     for(let key of Object.keys(useStates) as (keyof typeof useStates)[])
       if(key.includes("start")){
         let intervallType = key.replace("startIntervall", "");
 
         if(useStates[key] !== undefined){
-          let startIntervall = useStates[key][0];
+          let startIntervall = useStates[key][0]; //Index 0, da useStates als Array mit der Variable als auch der set Funktion angelegt werden
 
           let endIntervallKey = "endIntervall" + intervallType as keyof typeof useStates;
 
@@ -183,10 +201,13 @@ export function filterCards(cards: CardData[], useStates: UseStatesI) : [CardDat
                 case "Hp": cardAttribute = "hp"; break;
               }
 
+              if(card[cardAttribute] === undefined)
+                (card as any)[cardAttribute] = 0;
+
               if(typeof card[cardAttribute] === "number"){
                 let cardAttributeValue = card[cardAttribute] as number;
 
-                if(startIntervallNumber > cardAttributeValue || endIntervallNumber < cardAttributeValue){
+                if(startIntervallNumber > cardAttributeValue || endIntervallNumber < cardAttributeValue){ //Prüfung, ob die Karte nicht valide ist
                   cardValid = false;
                   break;
                 }
@@ -213,28 +234,37 @@ export function filterCards(cards: CardData[], useStates: UseStatesI) : [CardDat
   return [filteredCards, validFilterFound];
 }
 
+// Type Guard: Überprüft, ob das übergebene Objekt der CardData-Struktur entspricht
 function isCardData(obj: any): obj is CardData {
+  // Grundlegende Prüfung auf Objekt
   if(typeof Object !== "object" || obj === null)
     console.log("Karten sind kein Objekt oder null");
 
+  // Prüfung der ID
   if(typeof obj.id !== "number")
     console.log("ID ist keine number");
 
+  // Prüfung des Namens
   if(typeof obj.name !== "string")
     console.log("Name ist kein string");
 
+  // Prüfung der Seltenheit (muss einer der definierten Werte sein)
   if(typeof obj.rarity !== "string" || (obj.rarity !== "Common" && obj.rarity !== "Rare" && obj.rarity !== "Epic" && obj.rarity !== "Legendary"))
     console.log("Seltenheit ist kein String, oder ein ungültiger Wert");
 
+  // Prüfung der Objektklasse
   if(typeof obj.class_of_object !== "string" || (obj.class_of_object !== "Boss" && obj.class_of_object !== "NPC" && obj.class_of_object !== "Weapon" && obj.class_of_object !== "Armor"))
     console.log("Klasse ist kein String, oder ein ungültiger Wert");
 
+  // Prüfung der Bild-Metadaten
   if(typeof obj.image_mime !== "string")
     console.log("Image Mime ist kein String");
 
+  // Prüfung der Bilddaten (muss ein Buffer sein)
   if(!Buffer.isBuffer(obj.image_data))
     console.log("Image Data ist kein Buffer");
 
+  // Rückgabe true, wenn alle Bedingungen erfüllt sind
   return (
     typeof obj === "object" &&
     obj !== null &&
@@ -257,13 +287,15 @@ function isCardData(obj: any): obj is CardData {
   );
 }
 
+// Type Guard: Überprüft, ob das Array nur gültige CardData-Objekte enthält
 function isCardDataArray(arr: any): arr is CardData[] {
   return Array.isArray(arr) && arr.every(isCardData);
 }
 
+// Ruft die Karten vom Server ab basierend auf dem Typ (z.B. Weapon, Armor)
 export async function getCards(type: string): Promise<DBResponse> {
   try {
-    // POST, weil Body geschickt wird
+    // GET-Anfrage an die API
     const response = await fetch(`/api/cards?class_of_object=${type}`, {
       method: "GET"
     });
@@ -282,10 +314,13 @@ export async function getCards(type: string): Promise<DBResponse> {
       return { status: message, cards: [] };
     }
 
+    // Iteriere über alle empfangenen Karten zur Datenaufbereitung
     for(let i = 0; i < data.cards.length; i++){
       let card = data.cards[i];
+      // Konvertiere die Bilddaten zurück in einen Buffer
       card.image_data = Buffer.from(card.image_data.data);
 
+      // Setze null-Werte auf undefined, um Konsistenz mit TypeScript-Typen zu wahren
       const keys = Object.keys(card) as (keyof CardData)[];
       for(let key of keys)
         if(card[key] === null)
@@ -298,7 +333,7 @@ export async function getCards(type: string): Promise<DBResponse> {
     if(typeof data.error !== "string" && data.error !== undefined)
       console.log("Error ist kein String und auch nicht undefined");
 
-    // Validierung des Inhalts
+    // Validierung der gesamten Antwortstruktur
     if (
       (typeof data.status === "string" || data.status === undefined) &&
       Array.isArray(data.cards) &&
@@ -322,12 +357,15 @@ export async function getCards(type: string): Promise<DBResponse> {
   }
 }
 
+// Sucht nach Karten, deren Name den Suchparameter enthält
 export async function getCardsThatFitToSearchParam(searchParam: string, type: string): Promise<CardData[]> {
+    // Hole alle Karten des Typs
     let response = getCards(type);
     let cards = (await response).cards;
 
     let filteredCards: CardData[] = [];
 
+    // Filtere Karten, deren Name den Suchbegriff enthält (case-insensitive)
     for(let card of cards){
       if(card.name.toLowerCase().includes(searchParam.toLowerCase()))
         filteredCards.push(card);

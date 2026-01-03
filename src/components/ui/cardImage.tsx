@@ -26,7 +26,7 @@ export function CardImage({ className, image_data, image_mime, cardName, childre
     // Wenn die Größe unbekannt ist, verwenden Sie 'fill' oder ein normales <img>
     return (
         // Hier wird der Base64-String als Quelle verwendet
-        <div className={`${className} relative overflow-hidden border-1 border-black w-[220px] h-[250px]`}>
+        <div className={`${className} overflow-hidden border-1 border-black`}>
             <Image 
                 src={src} 
                 fill={true}

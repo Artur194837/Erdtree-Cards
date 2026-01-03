@@ -3,37 +3,48 @@
 import { useState } from 'react';
 
 export default function CardForm() {
+  // State für den Ladezustand während des Absendens
   const [loading, setLoading] = useState(false);
+  // State für Erfolgs- oder Fehlermeldungen
   const [message, setMessage] = useState<string | null>(null);
 
+  // Funktion zum Behandeln des Formular-Submits
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    // Verhindert das Standardverhalten des Formulars (Neuladen der Seite)
     e.preventDefault();
     setMessage(null);
     setLoading(true);
 
     const form = e.currentTarget;
+    // Erstellt ein FormData-Objekt aus den Formulardaten
     const formData = new FormData(form);
 
     try {
+      // Sendet die Daten an die API
       const res = await fetch('/api/cards', {
         method: 'POST',
         body: formData,
       });
 
       const data = await res.json();
+      // Überprüft, ob die Anfrage erfolgreich war
       if (!res.ok) {
         setMessage(data?.error || 'Fehler beim Hinzufügen');
       } else {
         setMessage(`Erfolg: ${JSON.stringify(data)}`);
+        // Setzt das Formular zurück
         form.reset();
       }
     } catch (err) {
+      // Fängt Netzwerkfehler oder andere Ausnahmen ab
       setMessage(String(err));
     } finally {
+      // Beendet den Ladezustand, egal ob Erfolg oder Fehler
       setLoading(false);
     }
   }
 
+  // Optionen für Dropdown-Menüs (Schadensarten, Statuseffekte etc.)
   const options = [
     {"value": "Magic Damage", "key": 1},
     {"value": "Fire Damage", "key": 2},
@@ -79,7 +90,7 @@ export default function CardForm() {
       </div>
     </div>
 
-    {/* Attack Stats */}
+    {/* Angriffswerte */}
     <fieldset className="grid md:grid-cols-3 gap-2 border p-3 rounded">
       <legend className="font-bold">Attack Stats</legend>
       <input type="float-input" name="base_attack" placeholder="Base Attack" className="p-2 border rounded text-black" />
@@ -90,7 +101,7 @@ export default function CardForm() {
       <input type="float-input" name="crit" placeholder="Critical Damage" className="p-2 border rounded text-black" />
     </fieldset>
 
-    {/* Defense Stats */}
+    {/* Verteidigungswerte */}
     <fieldset className="grid md:grid-cols-3 gap-2 border p-3 rounded">
       <legend className="font-bold">Defense</legend>
       <input type="float-input" name="parry_defense" placeholder="Parry Defense" className="p-2 border rounded text-black" />
@@ -100,7 +111,7 @@ export default function CardForm() {
       <input type="float-input" name="holy_defense" placeholder="Holy Defense" className="p-2 border rounded text-black" />
     </fieldset>
 
-    {/* Negations */}
+    {/* Negierungswerte */}
     <fieldset className="grid md:grid-cols-3 gap-2 border p-3 rounded">
       <legend className="font-bold">Damage Negations</legend>
       <input type="float-input" name="physical_negation" placeholder="Physical" className="p-2 border rounded text-black" />
@@ -113,7 +124,7 @@ export default function CardForm() {
       <input type="float-input" name="holy_negation" placeholder="Holy" className="p-2 border rounded text-black" />
     </fieldset>
 
-    {/* Requirements */}
+    {/* Anforderungen */}
     <fieldset className="grid md:grid-cols-5 gap-2 border p-3 rounded">
       <legend className="font-bold">Requirements</legend>
       <input type="float-input" name="str_requirement" placeholder="Strength" className="p-2 border rounded text-black" />
@@ -123,7 +134,7 @@ export default function CardForm() {
       <input type="float-input" name="arc_requirement" placeholder="Arcane" className="p-2 border rounded text-black" />
     </fieldset>
 
-    {/* Scaling */}
+    {/* Skalierungen */}
     <fieldset className="grid md:grid-cols-5 gap-2 border p-3 rounded">
       <legend className="font-bold">Scaling</legend>
       {['str', 'dex', 'int', 'fai', 'arc'].map(stat => (
@@ -142,7 +153,7 @@ export default function CardForm() {
       ))}
     </fieldset>
 
-    {/* Other Stats */}
+    {/* Andere Werte */}
     <fieldset className="grid md:grid-cols-3 gap-2 border p-3 rounded">
       <legend className="font-bold">Other Stats</legend>
       <input type="float-input" name="boost" placeholder="Boost" className="p-2 border rounded text-black" />
@@ -158,7 +169,7 @@ export default function CardForm() {
       <input type="float-input" name="hp" placeholder='Health Points' className="p-2 border rounded text-black" />
     </fieldset>
 
-    {/* Rewards */}
+    {/* Belohnungen */}
     <fieldset className="grid md:grid-cols-3 gap-2 border p-3 rounded">
       <legend className="font-bold">Rewards</legend>
       <input type="float-input" name="reward_runes" placeholder="Runes" className="p-2 border rounded text-black" />
@@ -167,6 +178,7 @@ export default function CardForm() {
       <input type="text" name="reward_three" placeholder="Reward 3" className="p-2 border rounded text-black" />
     </fieldset>
 
+    {/* Stärken und Schwächen von Bossen */}
     <fieldset>
       <label>Strong VS</label>
       <select name='strong_vs_1' defaultValue="None">
@@ -239,6 +251,7 @@ export default function CardForm() {
       </select>
     </fieldset>
 
+    {/* Fundort */}
     <input name='location' placeholder='location' />
 
     <button
