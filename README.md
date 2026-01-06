@@ -16,7 +16,7 @@ Dieses Tool wurde entwickelt, um die Lücke zwischen reiner Information und prak
 * **Next.js & Tailwind CSS**: Ein moderner Tech-Stack sorgt für blitzschnelle Ladezeiten und ein flüssiges Nutzererlebnis.
 * **PostgreSQL**: Eine robuste Datenbank im Hintergrund verwaltet die umfangreichen Item-Daten effizient.
 
-**Anleitung zum Starten des Anwendungscontainers und des Postgres Containers sowie zum Füllen der DB**
+## Anleitung zum Starten des Anwendungscontainers und des Postgres Containers sowie zum Füllen der DB
 
 > 1.  Kommandozeile öffnen und in das Hauptverzeichnis von Erdtree Cards navigieren
 > 2. "docker build -t erdtree-cards-web ." Ausführen, um das Image der Anwendung zu erstellen
