@@ -29,6 +29,13 @@ Folge diesen Schritten, um die Anwendung und die Datenbank lokal einzurichten:
 docker compose up --watch
 ```
 
+### 2. DB Befüllen
+Öffne ein neues Terminal im Hauptverzeichnis des Projekts.
+
+```bash
+docker exec -i erdtree-cards-db pg_restore -U postgres -d cards < cards.dump
+```
+
 <img width="1690" height="1289" alt="image" src="https://github.com/user-attachments/assets/fe22af6c-1680-4788-8ee6-6989e4f865ca" />
 <img width="1733" height="1294" alt="image" src="https://github.com/user-attachments/assets/2e23a596-4621-4225-bd4e-a7e4df19a44a" />
 <img width="1378" height="1288" alt="image" src="https://github.com/user-attachments/assets/1bd88e8d-7902-40aa-8071-fed188479bb4" />
