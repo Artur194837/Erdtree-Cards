@@ -16,13 +16,17 @@ Dieses Tool wurde entwickelt, um die Lücke zwischen reiner Information und prak
 * **Next.js & Tailwind CSS**: Ein moderner Tech-Stack sorgt für blitzschnelle Ladezeiten und ein flüssiges Nutzererlebnis.
 * **PostgreSQL**: Eine robuste Datenbank im Hintergrund verwaltet die umfangreichen Item-Daten effizient.
 
-## Anleitung zum Starten des Anwendungscontainers und des Postgres Containers sowie zum Füllen der DB
+---
 
-> 1.  Kommandozeile öffnen und in das Hauptverzeichnis von Erdtree Cards navigieren
-> 2. "docker build -t erdtree-cards-web ." Ausführen, um das Image der Anwendung zu erstellen
-> 3. Per "docker compose up –-watch" Container für die Postgres DB und die Anwendung erstellen und diese starten
-> 4. Neue Kommandozeile öffnen, wieder in das Hauptverzeichnis navigieren und "docker exec -i erdtree-cards-db pg_restore -U postgres -d cards < cards.dump" ausführen, um die Datenbank zu befüllen
-> 5. Im Browser die URL localhost:3000/weapons besuchen
+## 💻 Anleitung zum Setup
+
+Folge diesen Schritten, um die Anwendung und die Datenbank lokal einzurichten:
+
+### 1. Container starten
+Öffne dein Terminal im Hauptverzeichnis des Projekts und starte die Umgebung. Dank **Compose Watch** werden Änderungen am Code direkt synchronisiert:
+
+```bash
+docker compose up --watch
 
 <img width="1690" height="1289" alt="image" src="https://github.com/user-attachments/assets/fe22af6c-1680-4788-8ee6-6989e4f865ca" />
 <img width="1733" height="1294" alt="image" src="https://github.com/user-attachments/assets/2e23a596-4621-4225-bd4e-a7e4df19a44a" />
