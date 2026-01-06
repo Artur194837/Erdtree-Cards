@@ -1,21 +1,20 @@
-Erdtree Cards 🌳⚔️
-Ein hochperformantes, responsives Web-Projekt zur Verwaltung und Analyse von Elden Ring Objekten.
+# Erdtree Cards 🌳⚔️
 
-Dieses Tool wurde entwickelt, um die Lücke zwischen reiner Information und praktischer Auffindbarkeit zu schließen. Während das offizielle Wiki eine großartige Wissensdatenbank ist, ermöglicht Erdtree Cards eine gezielte Suche durch komplexe Datenbestände.
+Ein hochperformantes, responsives Web-Projekt zur Verwaltung und Analyse von **Elden Ring Objekten**. 
 
-🚀 Warum Erdtree Cards?
-Multifunktionales Filtern: Wende beliebig viele Filter gleichzeitig an (z. B. Stärke-Skalierung S + Magieschaden), um in Sekunden das perfekte Item für deinen Build zu finden.
+Dieses Tool wurde entwickelt, um die Lücke zwischen reiner Information und praktischer Auffindbarkeit zu schließen. Während das offizielle Wiki eine großartige Wissensdatenbank ist, ermöglicht **Erdtree Cards** eine gezielte Suche durch komplexe Datenbestände.
 
-Speed-Vorteil: Die optimierte Benutzeroberfläche erlaubt es, gewünschte Objekte deutlich schneller zu finden als durch das manuelle Durchsuchen statischer Wiki-Tabellen.
+## 🚀 Warum Erdtree Cards?
 
-Responsive Design: Das Layout passt sich nahtlos an – ideal für die Nutzung auf einem Zweitmonitor oder dem Smartphone während des Spielens.
+* **Multifunktionales Filtern**: Wende beliebig viele Filter gleichzeitig an (z. B. *Stärke-Skalierung S* + *Magieschaden*), um in Sekunden das perfekte Item für deinen Build zu finden.
+* **Speed-Vorteil**: Die optimierte Benutzeroberfläche erlaubt es, gewünschte Objekte deutlich schneller zu finden als durch das manuelle Durchsuchen statischer Wiki-Tabellen.
+* **Responsive Design**: Das Layout passt sich nahtlos an – ideal für die Nutzung auf einem Zweitmonitor oder dem Smartphone während des Spielens.
 
-🛠️ Technische Highlights
-Docker-Integration: Dank der Containerisierung mit Docker ist das Projekt plattformunabhängig lauffähig. Die Funktionalität ist auf Windows, macOS und Linux identisch.
+## 🛠️ Technische Highlights
 
-Next.js & Tailwind CSS: Ein moderner Tech-Stack sorgt für blitzschnelle Ladezeiten und ein flüssiges Nutzererlebnis.
-
-PostgreSQL: Eine robuste Datenbank im Hintergrund verwaltet die umfangreichen Item-Daten effizient.
+* **Docker-Integration**: Dank der Containerisierung mit Docker ist das Projekt plattformunabhängig lauffähig. Die Funktionalität ist auf Windows, macOS und Linux identisch.
+* **Next.js & Tailwind CSS**: Ein moderner Tech-Stack sorgt für blitzschnelle Ladezeiten und ein flüssiges Nutzererlebnis.
+* **PostgreSQL**: Eine robuste Datenbank im Hintergrund verwaltet die umfangreichen Item-Daten effizient.
 
 **Anleitung zum Starten des Anwendungscontainers und des Postgres Containers sowie zum Füllen der DB**
 
