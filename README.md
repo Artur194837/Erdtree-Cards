@@ -8,7 +8,7 @@ Dieses Tool wurde entwickelt, um die Lücke zwischen reiner Information und prak
 
 * **Multifunktionales Filtern**: Wende beliebig viele Filter gleichzeitig an (z. B. *Stärke-Skalierung S* + *Magieschaden*), um in Sekunden das perfekte Item für deinen Build zu finden.
 * **Speed-Vorteil**: Die optimierte Benutzeroberfläche erlaubt es, gewünschte Objekte deutlich schneller zu finden als durch das manuelle Durchsuchen statischer Wiki-Tabellen.
-* **Responsive Design**: Das Layout passt sich nahtlos an – ideal für die Nutzung auf einem Zweitmonitor oder dem Smartphone während des Spielens.
+* **Responsives Design**: Das Layout passt sich nahtlos an – ideal für die Nutzung auf einem Zweitmonitor oder dem Smartphone während des Spielens.
 
 ## 🛠️ Technische Highlights
 
