@@ -35,14 +35,15 @@ docker compose up --watch
 ```bash
 docker exec -i erdtree-cards-db pg_restore -U postgres -d cards < cards.dump
 ```
-
-<img width="1690" height="1289" alt="image" src="https://github.com/user-attachments/assets/fe22af6c-1680-4788-8ee6-6989e4f865ca" />
-<img width="1733" height="1294" alt="image" src="https://github.com/user-attachments/assets/2e23a596-4621-4225-bd4e-a7e4df19a44a" />
-<img width="1378" height="1288" alt="image" src="https://github.com/user-attachments/assets/1bd88e8d-7902-40aa-8071-fed188479bb4" />
-<img width="472" height="1259" alt="image" src="https://github.com/user-attachments/assets/ca754219-1c89-4c8a-873f-cf1d47d7596d" />
-<img width="1690" height="1256" alt="image" src="https://github.com/user-attachments/assets/b11a181b-a039-4f17-80a6-5d5b38405b34" />
-<img width="1688" height="1261" alt="image" src="https://github.com/user-attachments/assets/edab9697-91d7-4208-b388-31c9530e524f" />
-<img width="1691" height="1266" alt="image" src="https://github.com/user-attachments/assets/67dcc7c7-983f-437c-827b-aebcd2eda98f" />
+<p align="center">
+  <img width="1690" height="1289" alt="image" src="https://github.com/user-attachments/assets/fe22af6c-1680-4788-8ee6-6989e4f865ca" />
+  <img width="1733" height="1294" alt="image" src="https://github.com/user-attachments/assets/2e23a596-4621-4225-bd4e-a7e4df19a44a" />
+  <img width="1378" height="1288" alt="image" src="https://github.com/user-attachments/assets/1bd88e8d-7902-40aa-8071-fed188479bb4" />
+  <img width="472" height="1259" alt="image" src="https://github.com/user-attachments/assets/ca754219-1c89-4c8a-873f-cf1d47d7596d" />
+  <img width="1690" height="1256" alt="image" src="https://github.com/user-attachments/assets/b11a181b-a039-4f17-80a6-5d5b38405b34" />
+  <img width="1688" height="1261" alt="image" src="https://github.com/user-attachments/assets/edab9697-91d7-4208-b388-31c9530e524f" />
+  <img width="1691" height="1266" alt="image" src="https://github.com/user-attachments/assets/67dcc7c7-983f-437c-827b-aebcd2eda98f" />
+</p>
 
 
 
