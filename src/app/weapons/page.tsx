@@ -168,7 +168,6 @@ export default function Main() {
 
   // useEffect-Hook, der die Kartenliste aktualisiert, wenn sich Sortier-, Filter- oder Suchparameter ändern.
   useEffect(() => {
-    debugger;
     let cards: CardData[] = [];
 
     // Ruft Karten ab, die zum aktuellen Suchparameter und Typ "Weapon" passen.
@@ -294,7 +293,7 @@ export default function Main() {
       <Filter useStates={useStates} className="mt-2" type="Weapon"/>
       {/* Karten-Grid */}
       <div className='flex justify-center'>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 2xl:grid-cols-3 gap-8 w-auto mt-4">
+        <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 2xl:grid-cols-3 gap-8 w-auto mt-4`}>
           {/* Rendert für jede Karte eine CardWeapon-Komponente */}
           {cards.map((card, index : number) => (
             <CardWeapon key={index} card={card} />
