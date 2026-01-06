@@ -27,6 +27,7 @@ Folge diesen Schritten, um die Anwendung und die Datenbank lokal einzurichten:
 
 ```bash
 docker compose up --watch
+```
 
 <img width="1690" height="1289" alt="image" src="https://github.com/user-attachments/assets/fe22af6c-1680-4788-8ee6-6989e4f865ca" />
 <img width="1733" height="1294" alt="image" src="https://github.com/user-attachments/assets/2e23a596-4621-4225-bd4e-a7e4df19a44a" />
