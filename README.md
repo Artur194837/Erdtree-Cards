@@ -1,8 +1,8 @@
 **Erdtree Cards**
 
-Ein responsives Projekt zur Verwaltung von Elden Ring Objekten bei dem man Suchen als auch nach Werten filtern kann. Der Vorteil zum Elden Ring Wiki besteht darin, dass man mit Hilfe des Filters schneller die gewünschten Items finden kann. Ein weiterer Vorteil ist es, dass man beliebig viele Filter gleichzeitig anwenden kann und so das passende Item schnell finden kann. Außerdem wird Docker verwendet um die Funktionalität auf verschiedener Hardware als auch Betriebssystemen zu gewährleisten. 
+> Ein responsives Projekt zur Verwaltung von Elden Ring Objekten bei dem man Suchen als auch nach Werten filtern kann. Der Vorteil zum Elden Ring Wiki besteht darin, dass man mit Hilfe des Filters schneller die gewünschten Items finden kann.  > Ein weiterer Vorteil ist es, dass man beliebig viele Filter gleichzeitig anwenden kann und so das passende Item schnell finden kann. Außerdem wird Docker verwendet um die Funktionalität auf verschiedener Hardware als auch Betriebssystemen  > zu  gewährleisten. 
 
-##Anleitung zum Starten des Anwendungscontainers und des Postgres Containers
+**Anleitung zum Starten des Anwendungscontainers und des Postgres Containers**
 
 1.  Kommandozeile öffnen und in das Hauptverzeichnis von Erdtree Cards navigieren
 2. "docker build -t erdtree-cards-web ." Ausführen, um das Image der Anwendung zu erstellen
